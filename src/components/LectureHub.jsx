@@ -4,7 +4,6 @@ import { getVisibleSessions, getNextSession } from '../lib/filterSessions.js'
 import { buildSeoSchema } from '../lib/seoSchema.js'
 import { formatMonthLabel, getActiveMonth } from '../lib/sessionUtils.js'
 import { HubHero } from './HubHero.jsx'
-import { MobileBar } from './MobileBar.jsx'
 import { OtherSessions } from './OtherSessions.jsx'
 import { RegisterBlock } from './RegisterBlock.jsx'
 import { RegistrationNotes } from './RegistrationNotes.jsx'
@@ -48,7 +47,6 @@ export function LectureHub({ allSessions, pageUrl }) {
           <p>{monthLabel}{HUB.title} · 資料同步自官網講座列表，以最新公告為準</p>
         </div>
       </footer>
-      <MobileBar nextSession={nextSession} />
     </div>
   )
 }

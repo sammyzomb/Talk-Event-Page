@@ -1,5 +1,4 @@
 import { LECTURE } from '../data/company.js'
-import { getThemeQa } from '../data/faqs.js'
 import { getThemeImage, getThemeImagePosition } from '../data/themes.js'
 import { getVisibleSessions } from '../lib/filterSessions.js'
 import { buildRegisterUrl } from '../lib/buildRegisterUrl.js'
@@ -19,7 +18,6 @@ function scheduleStatusLabel(status) {
 export function ThemeSection({ theme, allSessions }) {
   const sessions = getVisibleSessions(allSessions, { themeId: theme.id })
   const schedule = sortSessionsForSchedule(sessions)
-  const themeFaqs = getThemeQa(theme.id).slice(0, 1)
 
   return (
     <section
@@ -128,12 +126,6 @@ export function ThemeSection({ theme, allSessions }) {
           </div>
         </div>
       </div>
-      {themeFaqs.length > 0 && (
-        <details className="lex-theme-faq lex-wide" data-reveal>
-          <summary>{themeFaqs[0].question}</summary>
-          <p>{themeFaqs[0].answer}</p>
-        </details>
-      )}
     </section>
   )
 }

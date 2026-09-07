@@ -688,6 +688,64 @@ section {
   align-self: start;
 }
 
+/* 總覽窄版：扁平主題區（#lecture-expo 與 .lex-root--hub 同元素，勿用後代選擇器） */
+#lecture-expo.lex-root--hub[data-lex-narrow] .lex-theme-section {
+  padding: 40px 0;
+  background: var(--lex-bg);
+}
+
+#lecture-expo.lex-root--hub[data-lex-narrow] .lex-theme-section + .lex-theme-section {
+  border-top: 1px solid var(--lex-border);
+}
+
+#lecture-expo.lex-root--hub[data-lex-narrow] .lex-theme-section-layout {
+  gap: 20px;
+  margin-bottom: 0;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+#lecture-expo.lex-root--hub[data-lex-narrow] .lex-theme-feature-image {
+  border-radius: 20px;
+  box-shadow: none;
+}
+
+#lecture-expo.lex-root--hub[data-lex-narrow] .lex-theme-schedule {
+  margin-bottom: 16px;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+#lecture-expo.lex-root--hub[data-lex-narrow] .lex-theme-schedule-head {
+  margin-bottom: 8px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--lex-border);
+}
+
+#lecture-expo.lex-root--hub[data-lex-narrow] .lex-theme-schedule ul {
+  gap: 0;
+}
+
+#lecture-expo.lex-root--hub[data-lex-narrow] .lex-theme-schedule-link {
+  gap: 10px;
+  padding: 12px 0;
+  border: none;
+  border-radius: 0;
+  border-bottom: 1px solid var(--lex-border);
+  background: transparent;
+  box-shadow: none;
+}
+
+#lecture-expo.lex-root--hub[data-lex-narrow] .lex-theme-schedule li:last-child .lex-theme-schedule-link {
+  border-bottom: none;
+}
+
 .lex-lineup-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1794,6 +1852,64 @@ section {
   .lex-story-image img {
     min-height: 0;
   }
+
+  /* 總覽手機：扁平主題區 */
+  #lecture-expo.lex-root--hub .lex-theme-section {
+    padding: 40px 0;
+    background: var(--lex-bg);
+  }
+
+  #lecture-expo.lex-root--hub .lex-theme-section + .lex-theme-section {
+    border-top: 1px solid var(--lex-border);
+  }
+
+  #lecture-expo.lex-root--hub .lex-theme-section-layout {
+    gap: 20px;
+    margin-bottom: 0;
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  #lecture-expo.lex-root--hub .lex-theme-feature-image {
+    border-radius: 20px;
+    box-shadow: none;
+  }
+
+  #lecture-expo.lex-root--hub .lex-theme-schedule {
+    margin-bottom: 16px;
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  #lecture-expo.lex-root--hub .lex-theme-schedule-head {
+    margin-bottom: 8px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--lex-border);
+  }
+
+  #lecture-expo.lex-root--hub .lex-theme-schedule ul {
+    gap: 0;
+  }
+
+  #lecture-expo.lex-root--hub .lex-theme-schedule-link {
+    gap: 10px;
+    padding: 12px 0;
+    border: none;
+    border-radius: 0;
+    border-bottom: 1px solid var(--lex-border);
+    background: transparent;
+    box-shadow: none;
+  }
+
+  #lecture-expo.lex-root--hub .lex-theme-schedule li:last-child .lex-theme-schedule-link {
+    border-bottom: none;
+  }
 }
 
 @media (max-width: 620px) {
@@ -1806,11 +1922,11 @@ section {
   }
 
   .lex-mobile-bar {
-    display: flex;
+    display: none;
   }
 
   .lex-main {
-    padding-bottom: 100px;
+    padding-bottom: 56px;
   }
 
   .lex-hero-inner {

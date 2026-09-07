@@ -4,7 +4,6 @@ import { getVisibleSessions, getNextSession } from '../lib/filterSessions.js'
 import { buildSeoSchema } from '../lib/seoSchema.js'
 import { formatMonthLabel, getActiveMonth } from '../lib/sessionUtils.js'
 import { Hero } from './Hero.jsx'
-import { MobileBar } from './MobileBar.jsx'
 import { OtherThemes } from './OtherThemes.jsx'
 import { RegisterBlock } from './RegisterBlock.jsx'
 import { RegistrationNotes } from './RegistrationNotes.jsx'
@@ -62,7 +61,6 @@ export function LecturePage({ theme, allSessions, pageUrl }) {
           <p>{monthLabel}{theme.name} · 資料同步自官網講座列表，以最新公告為準</p>
         </div>
       </footer>
-      <MobileBar nextSession={nextSession} />
     </div>
   )
 }

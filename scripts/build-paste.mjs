@@ -80,6 +80,20 @@ const fillImages = [
   .map((selector) => `${SCOPE} ${selector}`)
   .join(',')
 
+function hubNarrowFlattenCss(scope) {
+  return [
+    `${scope} .lex-theme-section{padding:40px 0!important;background:var(--lex-bg)!important}`,
+    `${scope} .lex-theme-section+.lex-theme-section{border-top:1px solid var(--lex-border)!important}`,
+    `${scope} .lex-theme-section-layout{padding:0!important;gap:20px!important;margin-bottom:0!important;border:none!important;border-radius:0!important;background:transparent!important;box-shadow:none!important}`,
+    `${scope} .lex-theme-feature-image{box-shadow:none!important}`,
+    `${scope} .lex-theme-schedule{margin-bottom:16px!important;padding:0!important;border:none!important;border-radius:0!important;background:transparent!important;box-shadow:none!important}`,
+    `${scope} .lex-theme-schedule-head{margin-bottom:8px!important;padding-bottom:8px!important;border-bottom:1px solid var(--lex-border)!important}`,
+    `${scope} .lex-theme-schedule ul{gap:0!important}`,
+    `${scope} .lex-theme-schedule-link{gap:10px!important;padding:12px 0!important;border:none!important;border-radius:0!important;border-bottom:1px solid var(--lex-border)!important;background:transparent!important;box-shadow:none!important}`,
+    `${scope} .lex-theme-schedule li:last-child .lex-theme-schedule-link{border-bottom:none!important}`,
+  ].join('')
+}
+
 const layoutGuardCss = [
   `${SCOPE} .lex-hero{overflow:clip!important}`,
   `${SCOPE} .lex-hero-bg{position:absolute!important;inset:0!important}`,
@@ -90,8 +104,10 @@ const layoutGuardCss = [
   `${fillImages}{width:100%!important;height:100%!important;object-fit:cover!important}`,
   `${SCOPE} .lex-wide{width:calc(100% - 24px)!important;max-width:none!important;margin-inline:auto!important;box-sizing:border-box!important}`,
   `${SCOPE} .lex-wide:not(.lex-theme-section-layout){padding-inline:0!important}`,
-  /* 主題卡同時帶 lex-wide：不可被 padding-inline:0 清掉左側內距 */
-  `${SCOPE} .lex-theme-section-layout{padding:clamp(32px,4vw,52px) clamp(36px,4.5vw,56px)!important;box-sizing:border-box!important;overflow:hidden!important}`,
+  /* 主題卡同時帶 lex-wide：桌機才套大框內距 */
+  `@media (min-width:901px){${SCOPE} .lex-theme-section-layout{padding:clamp(32px,4vw,52px) clamp(36px,4.5vw,56px)!important;box-sizing:border-box!important;overflow:hidden!important}}`,
+  hubNarrowFlattenCss(`${SCOPE}.lex-root--hub[data-lex-narrow]`),
+  `@media (max-width:900px){${hubNarrowFlattenCss(`${SCOPE}.lex-root--hub`)}}`,
   `${SCOPE} .lex-container{width:calc(100% - 24px)!important;max-width:none!important;margin-inline:auto!important}`,
   `${SCOPE} .lex-hero{width:100%!important;max-width:none!important;margin-inline:0!important}`,
   `${SCOPE} .lex-hero-inner{width:100%!important;padding-left:10%!important;padding-right:max(10%,calc(var(--lex-site-rail,72px) + 28px))!important;box-sizing:border-box!important}`,
@@ -116,6 +132,7 @@ const layoutGuardCss = [
   `${SCOPE} .lex-hero-facts{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:12px!important}`,
   `${SCOPE} .lex-hub-next{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important;list-style:none!important}`,
   `${SCOPE} .lex-glance-link{display:inline-flex!important;align-items:center!important;text-decoration:none!important}`,
+  `${SCOPE} .lex-mobile-bar{display:none!important}`,
   `${SCOPE} .lex-glance--hero{position:absolute!important;z-index:2!important;margin:0!important;right:max(24px,calc(var(--lex-site-rail,72px) + 20px))!important}`,
   `@media (min-width:901px){${SCOPE} .lex-hero--theme .lex-glance--hero,${SCOPE} .lex-hero--hub .lex-glance--hero{top:auto!important;bottom:64px!important;transform:none!important;width:auto!important}}`,
   `@media (max-width:900px){${SCOPE} .lex-glance--hero{position:relative!important;right:auto!important;bottom:auto!important;top:auto!important;justify-self:center!important;width:auto!important;margin:4px auto 28px!important}}`,
