@@ -108,6 +108,8 @@ const layoutGuardCss = [
   `${SCOPE} .lex-theme-faq summary{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:16px!important;list-style:none!important}`,
   `${SCOPE} .lex-theme-faq summary::-webkit-details-marker{display:none!important}`,
   `${SCOPE} .lex-theme-faq-toggle{flex:0 0 auto!important;display:grid!important;place-items:center!important;width:2rem!important;height:2rem!important;border-radius:999px!important}`,
+  `${SCOPE} .lex-story-image{position:relative!important;display:block!important;min-height:560px!important;overflow:hidden!important}`,
+  `${SCOPE} .lex-story-image img{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;object-fit:cover!important;min-height:0!important}`,
   `${SCOPE}[data-lex-narrow] .lex-lineup-grid{grid-template-columns:1fr!important;gap:12px!important}`,
   `${SCOPE}[data-lex-narrow] .lex-lineup-card{grid-template-columns:96px minmax(0,1fr)!important;min-height:0!important;align-items:start!important}`,
   `${SCOPE}[data-lex-narrow] .lex-lineup-portrait{width:96px!important;height:96px!important;min-height:96px!important;aspect-ratio:1/1!important;align-self:start!important}`,

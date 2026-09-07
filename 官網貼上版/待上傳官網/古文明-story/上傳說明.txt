@@ -1,0 +1,11 @@
+請上傳本資料夾的 shutterstock_1338359999.jpg 至官網伺服器：
+
+  /travel/data/images/202609/lecture-ancient/shutterstock_1338359999.jpg
+
+對應 URL（themes.js 已設定）：
+
+  https://www.tcawg.com/travel/data/images/202609/lecture-ancient/shutterstock_1338359999.jpg
+
+來源：NAS 米納克希神廟 / shutterstock_1338359999.jpg（已壓縮為 1920px 寬，約 392KB）
+
+上傳完成後，重貼 官網貼上版/古文明/貼上用-HTML區塊.html 至 CMS。
