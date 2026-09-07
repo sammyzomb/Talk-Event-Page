@@ -1,28 +1,3 @@
-export const SHARED_FAQS = [
-  {
-    question: '講座需要付費嗎？',
-    answer: '本系列主題講座為免費活動，歡迎預約參加。實際名額與場次以官網最新公告為準。',
-  },
-  {
-    question: '如何報名講座？',
-    answer:
-      '請在本頁場次表中點選「我要報名」，將導向官網報名表單。填寫資料後即可完成登記，我們會與您確認席位。',
-  },
-  {
-    question: '可以攜伴或代為報名嗎？',
-    answer: '可以。報名表單中請填寫實際出席人數與聯絡方式，以便我們安排座位。',
-  },
-  {
-    question: '可以拍照、錄影或錄音嗎？',
-    answer: '不行。本活動全程禁止拍照、錄影及錄音，敬請配合現場規範。',
-  },
-  {
-    question: '如何確認名額與截止時間？',
-    answer:
-      '各場次名額有限，頁面上顯示之截止時間與報名狀態僅供參考，實際以官網報名系統為準，建議尽早報名。',
-  },
-]
-
 /** 各主題專頁「講座詳細資訊」上方的 Q&A（可依主題替換問題） */
 export const THEME_QA = {
   russia: [
@@ -137,12 +112,4 @@ export const THEME_QA = {
 
 export function getThemeQa(themeId) {
   return THEME_QA[themeId] ?? []
-}
-
-export function getSharedFaqsOnly() {
-  return SHARED_FAQS
-}
-
-export function getFaqsForTheme(_themeId) {
-  return getSharedFaqsOnly()
 }
