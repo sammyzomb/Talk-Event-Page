@@ -1,0 +1,1975 @@
+#lecture-expo,
+#lecture-expo *,
+#lecture-expo *::before,
+#lecture-expo *::after {
+  box-sizing: border-box;
+}
+
+#lecture-expo {
+  --lex-text: #1a1a1a;
+  --lex-muted: #5c6670;
+  --lex-bg: #fafafa;
+  --lex-card: #fff;
+  --lex-border: #e8ecef;
+  --lex-radius: 20px;
+  --lex-shadow: 0 18px 50px rgba(15, 23, 42, 0.11);
+  /* 官網右側工具列寬度：只避讓文案，不在整塊右側留白 */
+  --lex-site-rail: 72px;
+  font-family: 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+  color: var(--lex-text);
+  background: var(--lex-bg);
+  line-height: 1.65;
+  font-size: 17px;
+  padding-right: 0;
+  box-sizing: border-box;
+}
+
+.lex-root:not(.lex-root--hub) {
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--accent-soft, #e8f1fa) 80%, #fff) 0%,
+      var(--lex-bg) 320px
+    );
+}
+
+#lecture-expo img {
+  display: block;
+  max-width: 100%;
+}
+
+#lecture-expo a {
+  color: inherit;
+}
+
+.lex-container {
+  width: calc(100% - 24px);
+  max-width: none;
+  margin-inline: auto;
+}
+
+.lex-wide {
+  width: calc(100% - 24px);
+  max-width: none;
+  margin-inline: auto;
+  padding-inline: 0;
+  box-sizing: border-box;
+}
+
+.lex-hero {
+  position: relative;
+  min-height: min(760px, 76svh);
+  display: grid;
+  align-items: end;
+  overflow: clip;
+  color: #fff;
+}
+
+@media (min-width: 901px) {
+  .lex-hero {
+    min-height: min(840px, 82svh);
+  }
+
+  .lex-hero--hub {
+    min-height: min(860px, 84svh);
+  }
+
+  .lex-hero--theme:has(.lex-glance--hero) .lex-hero-inner {
+    width: min(58%, 720px);
+    padding-right: 24px;
+  }
+
+  .lex-hero--hub:has(.lex-glance--hero) .lex-hero-inner {
+    width: min(62%, 760px);
+    padding-right: 24px;
+  }
+
+  .lex-hero--theme .lex-glance--hero,
+  .lex-hero--hub .lex-glance--hero {
+    top: auto;
+    bottom: 64px;
+    transform: none;
+    width: auto;
+  }
+
+  .lex-hero-bg img,
+  .lex-hero-carousel img {
+    inset: auto 0 0;
+    width: 100%;
+    height: 118%;
+    max-height: none;
+    object-fit: cover;
+  }
+
+  .lex-hero--theme .lex-hero-carousel img {
+    object-position: var(--hero-pos-desktop, center 40%);
+  }
+
+  .lex-hero--theme[data-theme='russia'] .lex-hero-carousel img[data-hero-slot='showcase'] {
+    height: 110%;
+  }
+}
+
+.lex-hero--theme .lex-hero-carousel img {
+  object-position: var(--hero-pos-mobile, center 40%);
+}
+
+.lex-hero-bg {
+  position: absolute;
+  inset: 0;
+}
+
+.lex-hero-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.lex-hero-shade {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(5, 11, 20, 0.4) 0%, rgba(5, 11, 20, 0.16) 62%, rgba(5, 11, 20, 0.08) 100%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0) 45%, rgba(4, 8, 15, 0.45));
+}
+
+.lex-hero-inner {
+  position: relative;
+  z-index: 1;
+  padding: 42px 10% 64px;
+  padding-right: max(10%, calc(var(--lex-site-rail) + 28px));
+  width: 100%;
+  margin-inline: auto;
+}
+
+.lex-hero-title {
+  font-family: 'Noto Serif TC', 'PMingLiU', serif;
+  font-size: clamp(2.25rem, 5vw, 4.8rem);
+  line-height: 1.08;
+  margin: 0 0 18px;
+  font-weight: 900;
+  letter-spacing: 0.025em;
+  text-wrap: balance;
+  text-shadow: 0 2px 18px rgba(3, 7, 18, 0.72), 0 1px 3px rgba(3, 7, 18, 0.5);
+}
+
+.lex-hero-lead {
+  max-width: 640px;
+  margin: 0 0 16px;
+  font-size: clamp(1rem, 1.5vw, 1.28rem);
+  line-height: 1.8;
+  text-wrap: balance;
+  text-shadow: 0 1px 12px rgba(3, 7, 18, 0.66);
+}
+
+.lex-hero-highlights {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  list-style: none;
+  padding: 0;
+  margin: 0 0 22px;
+}
+
+.lex-hero-highlights li {
+  padding: 8px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.42);
+  border-radius: 999px;
+  background: rgba(2, 6, 23, 0.22);
+  backdrop-filter: blur(8px);
+  font-size: 1.02rem;
+}
+
+.lex-hero--hub {
+  min-height: min(780px, 78svh);
+}
+
+.lex-hero--hub .lex-hero-title {
+  text-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.94),
+    0 4px 28px rgba(0, 0, 0, 0.78),
+    0 1px 2px rgba(0, 0, 0, 0.88);
+}
+
+.lex-hero--hub .lex-hero-lead {
+  text-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.9),
+    0 2px 18px rgba(0, 0, 0, 0.66);
+}
+
+.lex-hero-carousel img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1s ease;
+  filter: saturate(1.02);
+}
+
+.lex-hero-carousel img[data-active] {
+  opacity: 1;
+  z-index: 1;
+}
+
+.lex-hero-next {
+  margin: 0 0 20px;
+  opacity: 0.95;
+  text-shadow: 0 1px 10px rgba(3, 7, 18, 0.6);
+}
+
+.lex-hero-facts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  max-width: 720px;
+  margin: 0 0 22px;
+}
+
+.lex-hero-facts > div {
+  display: grid;
+  gap: 6px;
+  padding: 14px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 16px;
+  background: rgba(2, 6, 23, 0.42);
+  backdrop-filter: blur(10px);
+}
+
+.lex-hero-facts span {
+  font-size: 0.82rem;
+  letter-spacing: 0.12em;
+  opacity: 0.82;
+  font-weight: 700;
+}
+
+.lex-hero-facts strong {
+  display: grid;
+  gap: 4px;
+  font-size: clamp(1.05rem, 1.6vw, 1.22rem);
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.lex-hero-facts small {
+  font-size: 0.88rem;
+  font-weight: 500;
+  opacity: 0.88;
+  line-height: 1.45;
+}
+
+.lex-hub-next {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  max-width: 760px;
+  margin: 0 0 22px;
+  padding: 0;
+  list-style: none;
+}
+
+.lex-hub-next a {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 10px;
+  align-items: center;
+  padding: 12px 14px;
+  border-radius: 14px;
+  text-decoration: none;
+  background: rgba(2, 6, 23, 0.42);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(10px);
+}
+
+.lex-hub-next-theme {
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent, #0eaec4) 88%, #fff);
+  color: #fff;
+  font-size: 0.82rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.lex-hub-next strong {
+  font-size: 0.98rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.lex-hub-next-city {
+  font-size: 0.95rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+}
+
+.lex-hero-actions,
+.lex-register-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.lex-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.lex-pills a {
+  text-decoration: none;
+  padding: 8px 16px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent, #0eaec4) 85%, white);
+  color: #fff;
+  font-weight: 600;
+}
+
+.lex-main {
+  padding: 56px 0 120px;
+}
+
+.lex-section-head span {
+  position: relative;
+  display: inline-block;
+  font-size: 1rem;
+  letter-spacing: 0.12em;
+  color: var(--accent, #0eaec4);
+  font-weight: 700;
+  margin-bottom: 8px;
+  padding-bottom: 8px;
+}
+
+.lex-section-head span::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--accent, #0eaec4);
+  transition: width 0.7s cubic-bezier(0.2, 0.7, 0, 1);
+}
+
+#lecture-expo[data-anim] [data-revealed].lex-section-head span::after,
+#lecture-expo[data-anim] [data-revealed] .lex-section-head span::after,
+#lecture-expo[data-anim] .lex-section-head[data-revealed] span::after {
+  width: 2.75rem;
+}
+
+.lex-section-head h2 {
+  margin: 0 0 8px;
+  font-size: clamp(1.4rem, 2.5vw, 2rem);
+}
+
+.lex-section-head p {
+  margin: 0;
+  color: var(--lex-muted);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.lex-sessions .lex-section-head h2 {
+  font-family: 'Noto Serif TC', 'PMingLiU', serif;
+  font-size: clamp(1.85rem, 3.2vw, 2.65rem);
+  line-height: 1.15;
+}
+
+.lex-sessions .lex-section-head p {
+  font-size: clamp(1rem, 1.4vw, 1.12rem);
+  line-height: 1.75;
+}
+
+.lex-sessions .lex-section-head span {
+  font-size: 0.95rem;
+}
+
+
+section {
+  margin-bottom: 48px;
+}
+
+.lex-sessions {
+  margin-bottom: 72px;
+}
+
+.lex-table-wrap {
+  overflow-x: auto;
+  background: var(--lex-card);
+  border-radius: calc(var(--lex-radius) + 4px);
+  box-shadow: var(--lex-shadow);
+}
+
+.lex-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 820px;
+}
+
+.lex-table th,
+.lex-table td[data-label='日期時間'],
+.lex-table td[data-label='報名'] {
+  white-space: nowrap;
+}
+
+.lex-table th:nth-child(5),
+.lex-table td[data-label='報名'] {
+  width: 1%;
+  padding-left: 12px;
+  padding-right: 16px;
+  text-align: center;
+}
+
+.lex-table th,
+.lex-table td {
+  padding: 16px 14px;
+  border-bottom: 1px solid var(--lex-border);
+  text-align: left;
+  vertical-align: middle;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.lex-table th {
+  background: #f3f6f8;
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.02em;
+}
+
+/* 主題是這張表的主角，用襯線大字加主題色標線帶出層級 */
+.lex-table td.lex-table-title {
+  position: relative;
+  min-width: 220px;
+  padding-left: 28px;
+  font-family: 'Noto Serif TC', 'PMingLiU', serif;
+  font-size: clamp(1.1rem, 1.55vw, 1.28rem);
+  font-weight: 900;
+  line-height: 1.45;
+  letter-spacing: 0.01em;
+}
+
+.lex-table-when {
+  min-width: 132px;
+}
+
+.lex-table-when strong,
+.lex-table-when span {
+  display: block;
+}
+
+.lex-table-when strong {
+  font-size: 1.08rem;
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.lex-table-when span {
+  margin-top: 4px;
+  color: var(--lex-muted);
+  font-size: 0.98rem;
+  font-weight: 600;
+}
+
+.lex-table td.lex-table-title::before {
+  content: '';
+  position: absolute;
+  top: 18px;
+  bottom: 18px;
+  left: 10px;
+  width: 4px;
+  border-radius: 2px;
+  background: var(--accent, #1e4a7a);
+}
+
+.lex-table td[data-label='主講人'] {
+  min-width: 108px;
+  width: 12%;
+}
+
+.lex-table-speakers {
+  display: grid;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.lex-table-location {
+  display: grid;
+  gap: 6px;
+  min-width: 200px;
+}
+
+.lex-table-region {
+  --region: #475569;
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--region) 14%, #fff);
+  color: var(--region);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  line-height: 1.2;
+}
+
+.lex-table-region[data-region='台北'] {
+  --region: #1d4ed8;
+}
+
+.lex-table-region[data-region='台中'] {
+  --region: #0f766e;
+}
+
+.lex-table-region[data-region='高雄'] {
+  --region: #c2410c;
+}
+
+.lex-table-region[data-region='台南'] {
+  --region: #15803d;
+}
+
+.lex-table-region[data-region='屏東'] {
+  --region: #be123c;
+}
+
+.lex-table-region[data-region='桃園'] {
+  --region: #0369a1;
+}
+
+.lex-table-region[data-region='新竹'],
+.lex-table-region[data-region='彰化'],
+.lex-table-region[data-region='嘉義'] {
+  --region: #7c2d12;
+}
+
+.lex-table-address {
+  margin: 0;
+  color: var(--lex-muted);
+  font-size: 0.94rem;
+  line-height: 1.55;
+}
+
+.lex-table-register {
+  display: inline-flex;
+  align-items: center;
+  color: var(--accent, #1e4a7a);
+  font-weight: 800;
+  font-size: 0.98rem;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.lex-table-register:hover,
+.lex-table-register:focus-visible {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.lex-table-register.is-disabled {
+  color: var(--lex-muted);
+  font-weight: 700;
+  pointer-events: none;
+  text-decoration: none;
+}
+
+.lex-speaker-initials,
+.lex-lineup-initials {
+  position: relative;
+  z-index: 0;
+  letter-spacing: 0.04em;
+}
+
+.lex-region-badge {
+  --region: #475569;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 4.5rem;
+  min-height: 4.5rem;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: var(--region);
+  color: #fff;
+  font-size: clamp(1.05rem, 1.5vw, 1.22rem);
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  line-height: 1.15;
+  white-space: nowrap;
+  box-shadow:
+    0 0 0 3px color-mix(in srgb, var(--region) 18%, #fff),
+    0 8px 20px color-mix(in srgb, var(--region) 32%, transparent);
+}
+
+.lex-region-badge[data-region='台北'] {
+  --region: #1d4ed8;
+}
+
+.lex-region-badge[data-region='台中'] {
+  --region: #0f766e;
+}
+
+.lex-region-badge[data-region='高雄'] {
+  --region: #c2410c;
+}
+
+.lex-region-badge[data-region='台南'] {
+  --region: #15803d;
+}
+
+.lex-region-badge[data-region='屏東'] {
+  --region: #be123c;
+}
+
+.lex-region-badge[data-region='桃園'] {
+  --region: #0369a1;
+}
+
+.lex-region-badge[data-region='新竹'],
+.lex-region-badge[data-region='彰化'],
+.lex-region-badge[data-region='嘉義'] {
+  --region: #7c2d12;
+}
+
+.lex-card-top .lex-region-badge {
+  min-width: auto;
+  min-height: auto;
+  padding: 8px 16px;
+  font-size: 1rem;
+  letter-spacing: 0.08em;
+}
+
+.lex-speaker-img,
+.lex-lineup-img {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 18%;
+  image-orientation: from-image;
+  background-position: center 18%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  font-size: 0;
+  line-height: 0;
+}
+
+.lex-lineup {
+  margin-bottom: 80px;
+}
+
+#lecture-expo[data-lex-narrow] .lex-lineup-grid {
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+#lecture-expo[data-lex-narrow] .lex-lineup-card {
+  grid-template-columns: 96px minmax(0, 1fr);
+  min-height: 0;
+  align-items: start;
+}
+
+#lecture-expo[data-lex-narrow] .lex-lineup-portrait {
+  width: 96px;
+  height: 96px;
+  min-height: 96px;
+  aspect-ratio: 1 / 1;
+  align-self: start;
+}
+
+.lex-lineup-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  width: 100%;
+}
+
+.lex-lineup-card {
+  display: grid;
+  grid-template-columns: minmax(132px, 0.42fr) minmax(0, 1fr);
+  gap: 12px 14px;
+  align-items: stretch;
+  padding: 12px;
+  border: 1px solid var(--lex-border);
+  border-radius: var(--lex-radius);
+  background: var(--lex-card);
+  box-shadow: var(--lex-shadow);
+  text-align: left;
+  justify-items: stretch;
+  min-height: 210px;
+  width: 100%;
+  max-width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.lex-lineup-portrait {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 186px;
+  aspect-ratio: auto;
+  place-items: center;
+  overflow: hidden;
+  border: 3px solid #fff;
+  border-radius: 16px;
+  background: var(--accent-soft, #e8f1fa);
+  box-shadow: 0 10px 24px rgb(15 23 42 / 14%);
+  color: var(--accent, #1e4a7a);
+  font-family: 'Noto Serif TC', 'PMingLiU', serif;
+  font-size: 1.15rem;
+  font-weight: 900;
+  align-self: stretch;
+}
+
+.lex-lineup-portrait .lex-lineup-img,
+.lex-lineup-portrait img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.lex-lineup-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-content: start;
+  justify-items: start;
+  gap: 6px;
+  min-width: 0;
+  width: 100%;
+}
+
+.lex-lineup-name {
+  font-family: 'Noto Serif TC', 'PMingLiU', serif;
+  font-size: 1.12rem;
+  font-weight: 900;
+  line-height: 1.3;
+}
+
+.lex-lineup-title {
+  color: var(--lex-muted);
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.lex-lineup-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 2px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.lex-lineup-tags li {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 11px;
+  border-radius: 999px;
+  background: var(--accent-soft, #e8f1fa);
+  color: var(--accent, #1e4a7a);
+  font-size: 0.92rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.lex-lineup-tags li[data-theme='russia'] {
+  background: #e8f1fa;
+  color: #1e4a7a;
+}
+
+.lex-lineup-tags li[data-theme='latin-america'] {
+  background: #fef3c7;
+  color: #9a3412;
+}
+
+.lex-lineup-tags li[data-theme='aurora'] {
+  background: #ccfbf1;
+  color: #0f766e;
+}
+
+.lex-lineup-tags li[data-theme='ancient-civilization'] {
+  background: #ffedd5;
+  color: #9a3412;
+}
+
+.lex-lineup-count {
+  justify-self: start;
+  padding: 1px 8px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent, #1e4a7a) 10%, #fff);
+  color: var(--accent, #1e4a7a);
+  font-size: 0.82rem;
+  font-style: normal;
+  font-weight: 700;
+}
+
+.lex-lineup-sessions {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  margin: 4px 0 0;
+  padding: 0;
+  list-style: none;
+  color: var(--lex-muted);
+  font-size: 0.95rem;
+  line-height: 1.65;
+}
+
+.lex-lineup-sessions li {
+  display: block;
+}
+
+#lecture-expo [data-lex-end][hidden],
+#lecture-expo [data-lex-gone] {
+  display: none !important;
+}
+
+/* 總覽頁的主題導覽是 sticky，錨點跳轉時要留出它的高度 */
+.lex-sessions,
+.lex-theme-section,
+.lex-other-sessions,
+.lex-lineup {
+  scroll-margin-top: 76px;
+}
+
+.lex-card-top strong {
+  display: grid;
+  gap: 4px;
+}
+
+.lex-card-time {
+  color: var(--lex-muted);
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.lex-glance {
+  margin-bottom: 40px;
+}
+
+.lex-glance--hero {
+  position: absolute;
+  z-index: 2;
+  right: max(24px, calc(var(--lex-site-rail, 72px) + 20px));
+  bottom: 32px;
+  margin: 0;
+  width: auto;
+  scroll-margin-top: 0;
+}
+
+.lex-glance--hero .lex-glance-link {
+  padding: 14px 20px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.28);
+}
+
+.lex-glance--hero .lex-glance-link:hover,
+.lex-glance--hero .lex-glance-link:focus-visible {
+  transform: none;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.28);
+}
+
+.lex-glance,
+.lex-sessions,
+.lex-theme-section,
+.lex-other-sessions,
+.lex-lineup {
+  scroll-margin-top: 76px;
+}
+
+.lex-glance-link {
+  display: inline-flex;
+  align-items: center;
+  padding: 16px 22px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-size: 1.05rem;
+  font-weight: 800;
+  line-height: 1.3;
+  color: var(--accent, #1e4a7a);
+  white-space: nowrap;
+  background:
+    linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--accent-soft, #e0f7fa) 80%, #fff),
+      #fff 60%
+    );
+  border: 1px solid color-mix(in srgb, var(--accent, #0eaec4) 22%, var(--lex-border));
+  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.06);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.lex-glance-link:hover,
+.lex-glance-link:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 36px rgba(15, 23, 42, 0.1);
+}
+
+.lex-theme-next {
+  display: grid;
+  gap: 4px;
+  margin: 0 0 18px;
+  padding: 12px 14px;
+  border-left: 4px solid var(--accent, #0eaec4);
+  border-radius: 0 12px 12px 0;
+  background: color-mix(in srgb, var(--accent-soft, #e8f1fa) 75%, #fff);
+}
+
+.lex-theme-schedule {
+  margin: 0 0 22px;
+  padding: 16px 16px 14px;
+  border-radius: 18px;
+  background:
+    linear-gradient(145deg, color-mix(in srgb, var(--accent-soft, #e8f1fa) 88%, #fff), #fff);
+  border: 1px solid color-mix(in srgb, var(--accent, #0eaec4) 16%, transparent);
+  box-shadow: 0 10px 28px color-mix(in srgb, var(--accent, #0eaec4) 10%, transparent);
+}
+
+.lex-theme-schedule-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 0 0 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px dashed color-mix(in srgb, var(--accent, #0eaec4) 24%, transparent);
+}
+
+.lex-theme-schedule-head span {
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  color: var(--accent, #1e4a7a);
+}
+
+.lex-theme-schedule-head em {
+  font-style: normal;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--lex-muted);
+}
+
+.lex-theme-schedule ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+
+@media (min-width: 901px) {
+  .lex-theme-schedule ul {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+}
+
+.lex-theme-schedule li {
+  padding: 0;
+  border: none;
+  background: transparent;
+  transition: none;
+}
+
+.lex-theme-schedule li:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+.lex-theme-schedule-link {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 12px;
+  align-items: center;
+  padding: 10px 12px;
+  border-radius: 14px;
+  background: color-mix(in srgb, #fff 88%, var(--accent-soft, #e8f1fa));
+  border: 1px solid color-mix(in srgb, var(--accent, #0eaec4) 12%, transparent);
+  color: inherit;
+  text-decoration: none;
+}
+
+.lex-theme-schedule-link--disabled {
+  cursor: default;
+  opacity: 0.72;
+}
+
+.lex-theme-schedule-action {
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--accent, #1e4a7a);
+  white-space: nowrap;
+}
+
+.lex-theme-schedule-action--disabled {
+  color: var(--lex-muted);
+  font-weight: 700;
+}
+
+.lex-region-badge--schedule {
+  min-width: 3.25rem;
+  min-height: 3.25rem;
+  padding: 6px 10px;
+  font-size: 0.92rem;
+  letter-spacing: 0.08em;
+  box-shadow:
+    0 0 0 2px color-mix(in srgb, var(--region, #475569) 14%, #fff),
+    0 4px 12px color-mix(in srgb, var(--region, #475569) 24%, transparent);
+}
+
+.lex-theme-schedule-when {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+}
+
+.lex-theme-schedule-when strong {
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--lex-text);
+}
+
+.lex-theme-schedule-when time {
+  font-size: 0.88rem;
+  color: var(--lex-muted);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+}
+
+.lex-theme-next span {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--accent, #1e4a7a);
+  letter-spacing: 0.06em;
+}
+
+.lex-theme-next strong {
+  font-size: 1.08rem;
+  line-height: 1.45;
+}
+
+.lex-badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--accent-soft, #e8f1fa);
+  color: var(--accent, #1e4a7a);
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
+.lex-status--open { color: #0f766e; font-weight: 700; }
+.lex-status--full,
+.lex-status--closed { color: #b45309; font-weight: 700; }
+
+.lex-cards {
+  display: none;
+  gap: 16px;
+}
+
+.lex-card {
+  background: var(--lex-card);
+  border-radius: var(--lex-radius);
+  padding: 20px;
+  box-shadow: var(--lex-shadow);
+}
+
+.lex-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.lex-card h3 {
+  position: relative;
+  margin: 0 0 14px;
+  padding-left: 14px;
+  font-family: 'Noto Serif TC', 'PMingLiU', serif;
+  font-size: 1.24rem;
+  font-weight: 900;
+  line-height: 1.4;
+}
+
+.lex-card h3::before {
+  content: '';
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  left: 0;
+  width: 4px;
+  border-radius: 2px;
+  background: var(--accent, #1e4a7a);
+}
+
+.lex-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 16px;
+}
+
+.lex-card li {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: 8px;
+  margin-bottom: 8px;
+  color: var(--lex-muted);
+}
+
+.lex-card li span {
+  color: var(--lex-text);
+  font-weight: 600;
+}
+
+.lex-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 700;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+
+.lex-btn:hover,
+.lex-btn:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px color-mix(in srgb, var(--accent, #0eaec4) 25%, transparent);
+}
+
+.lex-btn--primary {
+  background: var(--accent, #0eaec4);
+  color: #fff;
+}
+
+.lex-btn--ghost {
+  background: transparent;
+  border-color: rgba(255, 255, 255, 0.55);
+  color: inherit;
+}
+
+.lex-main .lex-btn--ghost {
+  border-color: var(--lex-border);
+  color: var(--lex-text);
+}
+
+.lex-btn--sm {
+  min-height: 42px;
+  padding: 9px 16px;
+  font-size: 1rem;
+}
+
+.lex-btn--disabled {
+  background: #e5e7eb;
+  color: #6b7280;
+  pointer-events: none;
+}
+
+.lex-faq-list {
+  display: grid;
+  gap: 12px;
+}
+
+.lex-theme-faq {
+  background: var(--lex-card);
+  border: 1px solid var(--lex-border);
+  border-radius: var(--lex-radius);
+  padding: 16px 18px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.lex-theme-faq:hover {
+  border-color: color-mix(in srgb, var(--accent, #1e4a7a) 22%, var(--lex-border));
+  box-shadow: 0 8px 24px rgb(15 23 42 / 6%);
+}
+
+.lex-theme-faq summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 1.05rem;
+  line-height: 1.45;
+  list-style: none;
+}
+
+.lex-theme-faq summary::-webkit-details-marker {
+  display: none;
+}
+
+.lex-theme-faq-question {
+  flex: 1;
+  min-width: 0;
+}
+
+.lex-theme-faq-toggle {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent, #1e4a7a) 10%, #fff);
+  color: var(--accent, #1e4a7a);
+  font-size: 1.35rem;
+  font-weight: 700;
+  line-height: 1;
+  transition: transform 0.25s ease, background 0.25s ease;
+}
+
+.lex-theme-faq[open] .lex-theme-faq-toggle {
+  transform: rotate(45deg);
+  background: color-mix(in srgb, var(--accent, #1e4a7a) 16%, #fff);
+}
+
+.lex-theme-faq p {
+  margin: 12px 0 0;
+  color: var(--lex-muted);
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+.lex-theme-faq-body p:first-child {
+  margin-top: 12px;
+}
+
+.lex-theme-faq-body p + p {
+  margin-top: 10px;
+}
+
+.lex-theme-qa {
+  padding: 48px 0 12px;
+  scroll-margin-top: 76px;
+}
+
+.lex-notes ul {
+  margin: 0;
+  padding-left: 1.2rem;
+  color: var(--lex-muted);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.lex-notes li + li {
+  margin-top: 8px;
+}
+
+.lex-others-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.lex-other-card {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  text-decoration: none;
+  background: var(--lex-card);
+  border-radius: var(--lex-radius);
+  padding: 0;
+  box-shadow: var(--lex-shadow);
+  overflow: hidden;
+  border: 1px solid var(--lex-border);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.lex-other-card:hover,
+.lex-other-card:focus-visible {
+  transform: translateY(-4px);
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.16);
+}
+
+.lex-other-card-image {
+  position: relative;
+  min-height: 180px;
+  background: #d7dee6;
+}
+
+.lex-other-card-image img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.lex-other-card-copy {
+  display: grid;
+  align-content: center;
+  gap: 4px;
+  padding: 22px 24px;
+}
+
+.lex-other-card-copy small,
+.lex-other-card-meta {
+  font-size: 1.05rem;
+  line-height: 1.55;
+  color: var(--lex-muted);
+  font-weight: 500;
+}
+
+.lex-other-card-title {
+  display: block;
+  margin: 4px 0 2px;
+  font-family: 'Noto Serif TC', 'PMingLiU', serif;
+  font-size: clamp(1.28rem, 2.1vw, 1.5rem);
+  font-weight: 900;
+  line-height: 1.35;
+}
+
+.lex-other-card-meta {
+  display: block;
+  margin: 0 0 10px;
+}
+
+.lex-other-card-cta {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--accent, #1e4a7a);
+}
+
+.lex-other-card--hub {
+  grid-template-columns: 1fr;
+}
+
+.lex-theme-section {
+  padding: 56px 0;
+  background: color-mix(in srgb, var(--accent-soft, #e8f1fa) 42%, var(--lex-bg));
+}
+
+.lex-theme-section-layout {
+  margin: 0 auto 36px;
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
+  gap: clamp(18px, 2.8vw, 36px);
+  align-items: center;
+  /* 與 .lex-wide 同元素時勿依賴 padding-inline:0；左右需足夠內距避免文案貼邊 */
+  padding: clamp(32px, 4vw, 52px) clamp(36px, 4.5vw, 56px);
+  border: 1px solid color-mix(in srgb, var(--accent, #1e4a7a) 22%, var(--lex-border));
+  border-radius: 28px;
+  background:
+    linear-gradient(
+      165deg,
+      color-mix(in srgb, var(--accent-soft, #e8f1fa) 88%, #fff) 0%,
+      #fff 55%,
+      color-mix(in srgb, var(--accent-soft, #e8f1fa) 35%, #fff) 100%
+    );
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--accent, #1e4a7a) 8%, transparent),
+    0 18px 40px color-mix(in srgb, var(--accent, #1e4a7a) 10%, transparent);
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.lex-theme-section-copy {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.lex-theme-section-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 8px;
+  max-width: 100%;
+}
+
+.lex-theme-section-actions .lex-btn {
+  max-width: 100%;
+}
+
+.lex-theme-section:nth-of-type(even) .lex-theme-feature-image {
+  order: 2;
+}
+
+.lex-theme-feature-image {
+  position: relative;
+  display: block;
+  min-height: 560px;
+  overflow: hidden;
+  border-radius: 28px;
+  box-shadow: var(--lex-shadow);
+  color: #fff;
+  text-decoration: none;
+  isolation: isolate;
+}
+
+.lex-theme-feature-image::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 38%, rgba(3, 7, 18, 0.9));
+}
+
+.lex-theme-feature-image img {
+  width: 100%;
+  height: 100%;
+  min-height: 560px;
+  object-fit: cover;
+  transition: transform 0.7s ease;
+}
+
+.lex-theme-feature-image:hover img,
+.lex-theme-feature-image:focus-visible img {
+  transform: scale(1.045);
+}
+
+.lex-theme-feature-image > span {
+  position: absolute;
+  z-index: 1;
+  left: 24px;
+  right: 24px;
+  bottom: 24px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  column-gap: 12px;
+  row-gap: 8px;
+  align-items: end;
+  box-sizing: border-box;
+  max-width: calc(100% - 48px);
+  overflow: hidden;
+}
+
+.lex-theme-feature-image small {
+  grid-column: 1 / -1;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.8;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.lex-theme-feature-image strong {
+  min-width: 0;
+  font-family: 'Noto Serif TC', 'PMingLiU', serif;
+  font-size: clamp(1.35rem, 2.2vw, 1.9rem);
+  line-height: 1.3;
+  text-wrap: balance;
+  overflow-wrap: anywhere;
+}
+
+.lex-theme-feature-image b {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--accent);
+  font-size: 1.4rem;
+}
+
+.lex-theme-section-copy > ul {
+  list-style: none;
+  padding: 0;
+  margin: 24px 0;
+  display: grid;
+  gap: 10px;
+}
+
+.lex-theme-section-copy > ul > li {
+  position: relative;
+  padding-left: 24px;
+  font-weight: 700;
+}
+
+.lex-theme-section-copy > ul > li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.72em;
+  width: 12px;
+  height: 2px;
+  background: var(--accent);
+}
+
+.lex-theme-schedule li::before {
+  content: none;
+  display: none;
+}
+
+.lex-theme-schedule li {
+  position: static;
+  padding: 0;
+  font-weight: inherit;
+}
+
+.lex-theme-section-copy .lex-section-head h2 {
+  font-family: 'Noto Serif TC', 'PMingLiU', serif;
+  font-size: clamp(1.85rem, 3.5vw, 2.85rem);
+  line-height: 1.18;
+}
+
+.lex-theme-entry {
+  margin-top: 0;
+}
+
+/* 場次表與 FAQ 對齊近滿版寬度 */
+.lex-theme-section .lex-sessions,
+.lex-theme-section .lex-theme-faq,
+.lex-other-sessions .lex-sessions,
+.lex-other-sessions .lex-other-sessions-copy {
+  width: min(1440px, calc(100% - 20px));
+  margin-inline: auto;
+}
+
+.lex-other-sessions {
+  padding: 72px 0;
+  border-top: 1px solid var(--lex-border);
+}
+
+.lex-other-sessions-copy {
+  margin-bottom: 8px;
+}
+
+.lex-theme-faq {
+  margin-top: 16px;
+}
+
+.lex-story {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: clamp(32px, 6vw, 80px);
+  align-items: center;
+  margin-bottom: 72px;
+}
+
+.lex-story-eyebrow {
+  margin: 0 0 12px;
+  color: var(--accent);
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+}
+
+.lex-story-copy h2 {
+  margin: 0;
+  font-family: 'Noto Serif TC', 'PMingLiU', serif;
+  font-size: clamp(2rem, 4vw, 3.4rem);
+  line-height: 1.25;
+  text-wrap: balance;
+}
+
+.lex-story-intro {
+  margin: 22px 0;
+  color: var(--lex-muted);
+  font-size: 1.05rem;
+}
+
+.lex-story-highlights {
+  list-style: none;
+  padding: 0;
+  margin: 28px 0 0;
+  border-top: 1px solid var(--lex-border);
+}
+
+.lex-story-highlights li {
+  display: flex;
+  gap: 16px;
+  padding: 13px 0;
+  border-bottom: 1px solid var(--lex-border);
+  font-weight: 700;
+}
+
+.lex-story-highlights span {
+  color: var(--accent);
+  font-size: 0.92rem;
+}
+
+.lex-story-image {
+  position: relative;
+  margin: 0;
+  min-height: 560px;
+  overflow: hidden;
+  border-radius: 32px 32px 160px 32px;
+  box-shadow: var(--lex-shadow);
+}
+
+.lex-story-image img {
+  width: 100%;
+  height: 100%;
+  min-height: 560px;
+  object-fit: cover;
+}
+
+.lex-story-image figcaption {
+  position: absolute;
+  left: 24px;
+  bottom: 24px;
+  padding: 8px 14px;
+  color: #fff;
+  background: rgba(2, 6, 23, 0.62);
+  border-radius: 999px;
+  backdrop-filter: blur(8px);
+  font-size: 0.95rem;
+}
+
+.lex-hub-support {
+  padding-top: 64px;
+}
+
+.lex-footer {
+  padding: 24px 0 40px;
+  color: var(--lex-muted);
+  font-size: 0.95rem;
+  border-top: 1px solid var(--lex-border);
+}
+
+.lex-mobile-bar {
+  display: none;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 50;
+  padding: 10px 12px calc(10px + env(safe-area-inset-bottom));
+  background: rgba(255, 255, 255, 0.96);
+  border-top: 1px solid var(--lex-border);
+  backdrop-filter: blur(8px);
+  gap: 10px;
+}
+
+.lex-mobile-bar .lex-btn {
+  flex: 1;
+}
+
+#lecture-expo[data-anim] [data-reveal]:not([data-revealed]) {
+  opacity: 0;
+  transform: translateY(16px);
+}
+
+#lecture-expo[data-anim] [data-revealed] {
+  opacity: 1;
+  transform: none;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.lex-hero-copy > * {
+  opacity: 0;
+  transform: translateY(18px);
+  animation: lex-hero-in 0.75s cubic-bezier(0.2, 0.7, 0, 1) forwards;
+}
+
+.lex-hero-copy > *:nth-child(1) { animation-delay: 0.05s; }
+.lex-hero-copy > *:nth-child(2) { animation-delay: 0.14s; }
+.lex-hero-copy > *:nth-child(3) { animation-delay: 0.24s; }
+.lex-hero-copy > *:nth-child(4) { animation-delay: 0.34s; }
+.lex-hero-copy > *:nth-child(5) { animation-delay: 0.42s; }
+.lex-hero-copy > *:nth-child(6) { animation-delay: 0.5s; }
+.lex-hero-copy > *:nth-child(7) { animation-delay: 0.58s; }
+
+@keyframes lex-hero-in {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.lex-btn--pulse {
+  animation: lex-pulse 2.4s ease-in-out infinite;
+}
+
+@keyframes lex-pulse {
+  0%,
+  100% {
+    box-shadow: 0 10px 24px color-mix(in srgb, var(--accent, #0eaec4) 25%, transparent);
+    transform: translateY(0);
+  }
+  50% {
+    box-shadow: 0 14px 30px color-mix(in srgb, var(--accent, #0eaec4) 38%, transparent);
+    transform: translateY(-2px);
+  }
+}
+
+@media (max-width: 1100px) {
+  /* 平板／手機：取消滿版負 margin，避免右側大片留白 */
+  #lecture-expo {
+    margin-left: 0;
+    margin-right: 0;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .lex-wide,
+  .lex-container {
+    width: calc(100% - 24px);
+    max-width: none;
+    margin-inline: auto;
+  }
+}
+
+@media (min-width: 1101px) {
+  .lex-wide,
+  .lex-container {
+    width: 80%;
+  }
+}
+
+@media (max-width: 900px) {
+  #lecture-expo {
+    /* 手機隱藏官網右側工具列，不需再預留空隙 */
+    --lex-site-rail: 0px;
+  }
+
+  .lex-sessions,
+  .lex-theme-section,
+  .lex-other-sessions,
+  .lex-lineup {
+    scroll-margin-top: 16px;
+  }
+
+  .lex-lineup-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .lex-lineup-card {
+    grid-template-columns: 96px minmax(0, 1fr);
+    min-height: 0;
+    align-items: start;
+  }
+
+  .lex-lineup-portrait {
+    width: 96px;
+    height: 96px;
+    min-height: 96px;
+    aspect-ratio: 1 / 1;
+    align-self: start;
+  }
+
+  .lex-hero-facts {
+    grid-template-columns: 1fr;
+  }
+
+  .lex-hub-next {
+    grid-template-columns: 1fr;
+  }
+
+  .lex-others-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .lex-theme-section-layout,
+  .lex-story {
+    grid-template-columns: 1fr;
+  }
+
+  .lex-theme-section:nth-of-type(even) .lex-theme-feature-image {
+    order: initial;
+  }
+
+  .lex-story-image {
+    min-height: 440px;
+    border-radius: 28px 28px 110px 28px;
+  }
+
+  .lex-story-image img {
+    min-height: 440px;
+  }
+}
+
+@media (max-width: 620px) {
+  .lex-table-wrap {
+    display: none;
+  }
+
+  .lex-cards {
+    display: grid;
+  }
+
+  .lex-mobile-bar {
+    display: flex;
+  }
+
+  .lex-main {
+    padding-bottom: 100px;
+  }
+
+  .lex-hero-inner {
+    text-align: center;
+    padding: 32px 20px 16px;
+  }
+
+  .lex-hero-actions,
+  .lex-register-actions {
+    justify-content: center;
+  }
+
+  .lex-main .lex-btn--ghost {
+    width: 100%;
+  }
+
+  .lex-hero {
+    min-height: 660px;
+  }
+
+  .lex-hero--theme {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  .lex-hero--theme .lex-hero-inner {
+    padding-top: 0;
+    padding-bottom: 6px;
+  }
+
+  .lex-hero--theme .lex-hero-carousel img {
+    top: -8%;
+    bottom: auto;
+    height: 116%;
+  }
+
+  .lex-hero--theme[data-theme='russia'] .lex-hero-carousel img[data-hero-slot='showcase'] {
+    top: -4%;
+    height: 108%;
+  }
+
+  .lex-glance--hero {
+    position: relative;
+    right: auto;
+    bottom: auto;
+    top: auto;
+    transform: none;
+    justify-self: center;
+    width: auto;
+    max-width: calc(100% - 40px);
+    margin: 4px auto 28px;
+    z-index: 2;
+  }
+
+  .lex-glance--hero .lex-glance-link {
+    white-space: nowrap;
+    text-align: center;
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.22);
+  }
+
+  .lex-hero--theme:has(.lex-glance--hero) .lex-hero-inner,
+  .lex-hero--hub:has(.lex-glance--hero) .lex-hero-inner {
+    width: 100%;
+    padding-right: 20px;
+    padding-bottom: 12px;
+  }
+
+  .lex-hero-title {
+    font-size: clamp(2.1rem, 11vw, 3.35rem);
+  }
+
+  .lex-hero-highlights,
+  .lex-pills {
+    justify-content: center;
+  }
+
+  .lex-theme-section,
+  .lex-other-sessions {
+    padding: 54px 0;
+  }
+
+  .lex-theme-feature-image,
+  .lex-theme-feature-image img {
+    min-height: 360px;
+  }
+
+  .lex-theme-feature-image > span {
+    left: 20px;
+    right: 20px;
+    bottom: 20px;
+  }
+
+  .lex-theme-feature-image strong {
+    font-size: 1.55rem;
+  }
+
+  .lex-theme-schedule {
+    padding: 14px 12px 12px;
+  }
+
+  .lex-theme-schedule li {
+    gap: 0;
+  }
+
+  .lex-theme-schedule-link {
+    gap: 10px;
+    padding: 9px 10px;
+  }
+
+  .lex-region-badge--schedule {
+    min-width: 2.85rem;
+    min-height: 2.85rem;
+    padding: 5px 8px;
+    font-size: 0.86rem;
+  }
+
+  .lex-theme-schedule-when strong {
+    font-size: 0.96rem;
+  }
+
+  .lex-story {
+    margin-bottom: 52px;
+  }
+
+  .lex-story-image,
+  .lex-story-image img {
+    min-height: 380px;
+  }
+
+  .lex-other-card {
+    grid-template-columns: 112px 1fr;
+  }
+
+  .lex-other-card-image {
+    min-height: 160px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #lecture-expo [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .lex-hero-copy > * {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+
+  .lex-btn--pulse,
+  .lex-theme-schedule-link {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+  }
+
+  .lex-section-head span::after {
+    width: 2.75rem;
+    transition: none !important;
+  }
+}

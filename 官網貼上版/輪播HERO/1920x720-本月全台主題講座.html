@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=1920, height=720" />
+  <title>官網輪播 HERO · 1920×720 · 本月全台主題講座</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@500;700;900&family=Noto+Serif+TC:wght@700;900&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      width: 1920px;
+      height: 720px;
+      overflow: hidden;
+      background: #0b1220;
+      font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
+      color: #fff;
+    }
+
+    .hero {
+      position: relative;
+      width: 1920px;
+      height: 720px;
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .slides {
+      position: absolute;
+      inset: 0;
+    }
+
+    .slides img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transform: scale(1.08);
+      animation: slide-cycle 20s infinite;
+      will-change: opacity, transform;
+    }
+
+    .slides img:nth-child(1) {
+      animation-delay: 0s;
+      object-position: center 48%;
+    }
+    .slides img:nth-child(2) {
+      animation-delay: -5s;
+      object-position: center 45%;
+    }
+    .slides img:nth-child(3) {
+      animation-delay: -10s;
+      object-position: center 50%;
+    }
+    .slides img:nth-child(4) {
+      animation-delay: -15s;
+      object-position: center 38%;
+    }
+
+    @keyframes slide-cycle {
+      0% { opacity: 0; transform: scale(1.08); }
+      4% { opacity: 1; }
+      22% { opacity: 1; transform: scale(1); }
+      28% { opacity: 0; transform: scale(1); }
+      100% { opacity: 0; transform: scale(1); }
+    }
+
+    .shade {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(6, 12, 24, 0.82) 0%, rgba(6, 12, 24, 0.45) 46%, rgba(6, 12, 24, 0.18) 100%),
+        linear-gradient(180deg, rgba(6, 12, 24, 0.15) 0%, rgba(6, 12, 24, 0.55) 100%);
+      z-index: 1;
+    }
+
+    .copy {
+      position: absolute;
+      z-index: 2;
+      left: 120px;
+      right: 120px;
+      bottom: 88px;
+      display: grid;
+      gap: 18px;
+      max-width: 980px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 28px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      opacity: 0;
+      animation: rise 0.9s ease forwards 0.15s;
+    }
+
+    .brand img {
+      width: 52px;
+      height: 52px;
+      object-fit: contain;
+      filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.35));
+    }
+
+    .kicker {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: #7dd3e8;
+      opacity: 0;
+      animation: rise 0.9s ease forwards 0.28s;
+    }
+
+    h1 {
+      font-family: 'Noto Serif TC', 'PMingLiU', serif;
+      font-size: 84px;
+      font-weight: 900;
+      line-height: 1.08;
+      letter-spacing: 0.02em;
+      text-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
+      opacity: 0;
+      animation: rise 0.95s ease forwards 0.4s;
+    }
+
+    .lead {
+      max-width: 720px;
+      font-size: 28px;
+      font-weight: 500;
+      line-height: 1.55;
+      color: rgba(255, 255, 255, 0.9);
+      opacity: 0;
+      animation: rise 0.95s ease forwards 0.52s;
+    }
+
+    .themes {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 6px;
+      opacity: 0;
+      animation: rise 0.95s ease forwards 0.64s;
+    }
+
+    .themes span {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      padding: 0 18px;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(8px);
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    .cta {
+      margin-top: 8px;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      width: fit-content;
+      min-height: 58px;
+      padding: 0 28px;
+      border-radius: 999px;
+      background: #0eaec4;
+      color: #fff;
+      font-size: 24px;
+      font-weight: 900;
+      text-decoration: none;
+      box-shadow: 0 14px 34px rgba(14, 174, 196, 0.35);
+      opacity: 0;
+      animation: rise 0.95s ease forwards 0.76s, pulse 2.8s ease-in-out 1.6s infinite;
+    }
+
+    .cta b {
+      font-size: 26px;
+      line-height: 1;
+    }
+
+    .size-tag {
+      position: absolute;
+      z-index: 4;
+      top: 36px;
+      right: 40px;
+      font-size: 14px;
+      letter-spacing: 0.12em;
+      color: rgba(255, 255, 255, 0.55);
+      opacity: 0;
+      animation: fade 1s ease forwards 0.3s;
+    }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(22px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fade {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: translateY(0); box-shadow: 0 14px 34px rgba(14, 174, 196, 0.35); }
+      50% { transform: translateY(-3px); box-shadow: 0 18px 40px rgba(14, 174, 196, 0.48); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .slides img,
+      .brand, .kicker, h1, .lead, .themes, .cta, .size-tag {
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+      }
+      .slides img:first-child { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <div class="hero" id="carousel-hero">
+    <div class="slides" aria-hidden="true">
+      <img src="https://www.tcawg.com/data/images/202607/russ%20a/08-50-38-utc.jpg" alt="" />
+      <img src="https://images.unsplash.com/photo-1526392060635-9d6019884377?auto=format&fit=crop&w=1920&q=80" alt="" />
+      <img src="https://www.tcawg.com/travel/data/images/202605/AROR/28_01.jpg" alt="" />
+      <img src="https://www.tcawg.com/travel/data/images/202605/Casia/30.jpg" alt="" />
+    </div>
+    <div class="shade" aria-hidden="true"></div>
+    <div class="size-tag">1920 × 720</div>
+    <div class="copy">
+      <div class="brand">
+        <img src="https://www.tcawg.com/data/images/202606/TRAVLE/logo_1.png" alt="" />
+        航向世界旅遊
+      </div>
+      <p class="kicker">四大主題 · 全台開講 · 免費參加</p>
+      <h1>本月全台主題講座</h1>
+      <p class="lead">俄羅斯、拉丁美洲、極光、古文明——先選主題，再挑城市與場次。</p>
+      <div class="themes" aria-label="四大主題">
+        <span>俄羅斯</span>
+        <span>拉丁美洲</span>
+        <span>極光</span>
+        <span>古文明</span>
+      </div>
+      <a class="cta" href="https://www.tcawg.com/TRAVEL/講座總覽頁-四主題合一-pv-157.html">
+        進入講座總覽 <b>→</b>
+      </a>
+    </div>
+  </div>
+</body>
+</html>

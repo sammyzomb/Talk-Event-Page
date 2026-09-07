@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>主講人編排預覽 × 4 版本</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;600;700;900&family=Noto+Serif+TC:wght@700;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --text: #1a1a1a;
+      --muted: #5c6670;
+      --border: #e8ecef;
+      --bg: #f4f6f8;
+      --card: #fff;
+      --accent: #1e4a7a;
+      --accent-soft: #e8f1fa;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.55;
+    }
+    .page {
+      width: min(1280px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 28px 0 80px;
+    }
+    h1 {
+      font-family: 'Noto Serif TC', serif;
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      margin: 0 0 8px;
+    }
+    .lead { color: var(--muted); margin: 0 0 28px; }
+    .toc {
+      display: flex; flex-wrap: wrap; gap: 10px;
+      margin-bottom: 36px;
+    }
+    .toc a {
+      display: inline-flex; align-items: center;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: #fff;
+      border: 1px solid var(--border);
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.92rem;
+    }
+    .toc a:hover { border-color: var(--accent); color: var(--accent); }
+    .version {
+      margin-bottom: 48px;
+      padding: 24px;
+      background: #fff;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      box-shadow: 0 12px 36px rgb(15 23 42 / 8%);
+    }
+    .version-head {
+      display: flex; flex-wrap: wrap; gap: 12px 20px;
+      align-items: baseline;
+      margin-bottom: 18px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border);
+    }
+    .version-head strong {
+      font-size: 1.2rem;
+      font-weight: 900;
+    }
+    .version-head span { color: var(--muted); font-size: 0.92rem; }
+    .badge {
+      padding: 3px 10px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 0.75rem;
+      font-weight: 800;
+    }
+    img.photo {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 28%;
+      image-orientation: from-image;
+    }
+    img.photo.xie { object-position: center 72%; }
+
+    /* ========== A：現況雙欄卡 ========== */
+    .a-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin: 0; padding: 0; list-style: none;
+    }
+    .a-card {
+      display: grid;
+      grid-template-columns: 100px 1fr;
+      gap: 14px;
+      padding: 14px;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: #fafafa;
+    }
+    .a-photo {
+      width: 100px; aspect-ratio: 4/5;
+      border-radius: 14px; overflow: hidden;
+      border: 2px solid #fff;
+      box-shadow: 0 8px 18px rgb(15 23 42 / 12%);
+    }
+    .a-name { font-weight: 800; }
+    .a-title { color: var(--muted); font-size: 0.82rem; }
+    .a-meta { margin-top: 6px; color: var(--muted); font-size: 0.78rem; }
+
+    /* ========== B：寬版橫卡（一人一列） ========== */
+    .b-list { display: grid; gap: 12px; margin: 0; padding: 0; list-style: none; }
+    .b-card {
+      display: grid;
+      grid-template-columns: 140px 1fr auto;
+      gap: 18px;
+      align-items: center;
+      padding: 14px 18px;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: #fafafa;
+    }
+    .b-photo {
+      width: 140px; aspect-ratio: 4/5;
+      border-radius: 16px; overflow: hidden;
+      border: 3px solid #fff;
+      box-shadow: 0 10px 22px rgb(15 23 42 / 14%);
+    }
+    .b-name { font-family: 'Noto Serif TC', serif; font-size: 1.25rem; font-weight: 900; }
+    .b-title { color: var(--muted); font-size: 0.88rem; margin-top: 2px; }
+    .b-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+    .b-chips i {
+      font-style: normal;
+      padding: 3px 10px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 0.72rem;
+      font-weight: 700;
+    }
+    .b-sessions {
+      min-width: 140px;
+      color: var(--muted);
+      font-size: 0.82rem;
+      line-height: 1.7;
+      text-align: right;
+    }
+
+    /* ========== C：表精簡 + 臉＋名 ========== */
+    .c-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+    }
+    .c-table th, .c-table td {
+      padding: 14px 12px;
+      border-bottom: 1px solid var(--border);
+      text-align: left;
+      vertical-align: middle;
+    }
+    .c-table th { background: #f3f6f8; font-size: 0.85rem; }
+    .c-speakers { display: flex; gap: 14px; flex-wrap: nowrap; }
+    .c-person { display: flex; flex-direction: column; align-items: center; gap: 6px; width: 72px; text-align: center; }
+    .c-avatar {
+      width: 64px; height: 80px;
+      border-radius: 12px; overflow: hidden;
+      border: 2px solid #fff;
+      box-shadow: 0 4px 12px rgb(15 23 42 / 12%);
+    }
+    .c-person b { font-size: 0.82rem; font-weight: 700; }
+
+    /* ========== D：大圖優先網格 ========== */
+    .d-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      margin: 0; padding: 0; list-style: none;
+    }
+    .d-card {
+      display: grid;
+      gap: 10px;
+      padding: 0 0 14px;
+      border-radius: 16px;
+      overflow: hidden;
+      background: #fafafa;
+      border: 1px solid var(--border);
+    }
+    .d-photo {
+      aspect-ratio: 3/4;
+      overflow: hidden;
+    }
+    .d-body { padding: 0 12px; }
+    .d-name { font-weight: 900; font-size: 1rem; }
+    .d-title { color: var(--muted); font-size: 0.78rem; }
+    .d-meta { margin-top: 6px; color: var(--muted); font-size: 0.75rem; }
+
+    @media (max-width: 900px) {
+      .a-grid, .d-grid { grid-template-columns: 1fr 1fr; }
+      .b-card { grid-template-columns: 100px 1fr; }
+      .b-sessions { text-align: left; grid-column: 2; }
+    }
+    @media (max-width: 560px) {
+      .a-grid, .d-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <h1>主講人編排：四個版本預覽</h1>
+    <p class="lead">用真實官網照片示意。謝其峻已換成新圖（臉偏下，裁切偏下方）。請對照後告訴我要採用哪一版（可混搭）。</p>
+    <nav class="toc">
+      <a href="#v-a">A 現況雙欄</a>
+      <a href="#v-b">B 寬版橫卡</a>
+      <a href="#v-c">C 場次表精簡</a>
+      <a href="#v-d">D 大圖網格</a>
+    </nav>
+
+    <section class="version" id="v-a">
+      <div class="version-head">
+        <strong>A｜現況：雙欄職人卡</strong>
+        <span class="badge">目前線上接近此版</span>
+        <span>優點：資訊完整。缺點：人數多時較擠、場次不易掃。</span>
+      </div>
+      <ul class="a-grid">
+        <li class="a-card">
+          <div class="a-photo"><img class="photo xie" src="https://www.tcawg.com/data/images/202609/meting/Speaker/%E8%AC%9D%E5%85%B6%E5%B3%BB-3.jpg" alt="" /></div>
+          <div>
+            <div class="a-name">謝其峻</div>
+            <div class="a-title">資深領隊</div>
+            <div class="a-meta">俄羅斯 · 9/9 台北 · 9/16 台北</div>
+          </div>
+        </li>
+        <li class="a-card">
+          <div class="a-photo"><img class="photo" src="https://www.tcawg.com/data/images/202609/meting/Speaker/JJ.png" alt="" style="object-position:center 18%" /></div>
+          <div>
+            <div class="a-name">曾文駿（JJ）</div>
+            <div class="a-title">資深領隊</div>
+            <div class="a-meta">拉丁美洲 · 9/12 台北 · 9/19 台中</div>
+          </div>
+        </li>
+        <li class="a-card">
+          <div class="a-photo"><img class="photo" src="https://www.tcawg.com/data/images/202609/meting/Speaker/%E5%BC%B5%E6%9B%B8%E5%85%835.jpg" alt="" /></div>
+          <div>
+            <div class="a-name">張書元</div>
+            <div class="a-title">旅遊達人</div>
+            <div class="a-meta">極光 · 9/5 台北</div>
+          </div>
+        </li>
+        <li class="a-card">
+          <div class="a-photo"><img class="photo" src="https://www.tcawg.com/data/images/202609/meting/Speaker/%E6%9B%BE%E7%8E%9F%E5%A8%B8.jpg" alt="" /></div>
+          <div>
+            <div class="a-name">曾玟娸（VICKY）</div>
+            <div class="a-title">資深領隊</div>
+            <div class="a-meta">極光 · 9/24 台中</div>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <section class="version" id="v-b">
+      <div class="version-head">
+        <strong>B｜寬版橫卡（推薦）</strong>
+        <span class="badge">建議主選</span>
+        <span>一人一列：人像＋介紹＋場次分欄，適合本月 10+ 位主講。</span>
+      </div>
+      <ul class="b-list">
+        <li class="b-card">
+          <div class="b-photo"><img class="photo xie" src="https://www.tcawg.com/data/images/202609/meting/Speaker/%E8%AC%9D%E5%85%B6%E5%B3%BB-3.jpg" alt="" /></div>
+          <div>
+            <div class="b-name">謝其峻</div>
+            <div class="b-title">資深領隊</div>
+            <div class="b-chips"><i>俄羅斯</i><i>本月 2 場</i></div>
+          </div>
+          <div class="b-sessions">9/9 台北<br />9/16 台北</div>
+        </li>
+        <li class="b-card">
+          <div class="b-photo"><img class="photo" src="https://www.tcawg.com/data/images/202609/meting/Speaker/JJ.png" alt="" style="object-position:center 18%" /></div>
+          <div>
+            <div class="b-name">曾文駿（JJ）</div>
+            <div class="b-title">資深領隊</div>
+            <div class="b-chips"><i>拉丁美洲</i><i>本月 2 場</i></div>
+          </div>
+          <div class="b-sessions">9/12 台北<br />9/19 台中</div>
+        </li>
+        <li class="b-card">
+          <div class="b-photo"><img class="photo" src="https://www.tcawg.com/data/images/202609/meting/Speaker/%E9%A6%AC%E7%AD%A0%E5%AE%B6%203.jpg" alt="" /></div>
+          <div>
+            <div class="b-name">馬筠家</div>
+            <div class="b-title">資深領隊</div>
+            <div class="b-chips"><i>拉丁美洲</i><i>極光</i></div>
+          </div>
+          <div class="b-sessions">9/16 台南</div>
+        </li>
+      </ul>
+    </section>
+
+    <section class="version" id="v-c">
+      <div class="version-head">
+        <strong>C｜場次表精簡（臉＋姓名）</strong>
+        <span>場次表只留辨識用縮圖；完整介紹交給上方陣容區。雙人左右並排。</span>
+      </div>
+      <table class="c-table">
+        <thead>
+          <tr><th>日期</th><th>主題</th><th>主講人</th><th>地區</th><th>報名</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>2026/09/09</td>
+            <td>俄羅斯推薦~西鐵x蒙貝x北高加索x莫斯科</td>
+            <td>
+              <div class="c-speakers">
+                <span class="c-person">
+                  <span class="c-avatar"><img class="photo xie" src="https://www.tcawg.com/data/images/202609/meting/Speaker/%E8%AC%9D%E5%85%B6%E5%B3%BB-3.jpg" alt="" /></span>
+                  <b>謝其峻</b>
+                </span>
+              </div>
+            </td>
+            <td>台北</td>
+            <td>我要報名</td>
+          </tr>
+          <tr>
+            <td>2026/09/10</td>
+            <td>大陸史詩推薦：俄羅斯 × 南美</td>
+            <td>
+              <div class="c-speakers">
+                <span class="c-person">
+                  <span class="c-avatar"><img class="photo" src="https://www.tcawg.com/data/images/202609/meting/Speaker/%E9%99%B3%E5%A6%8D%E6%96%B9.jpg" alt="" /></span>
+                  <b>陳姸方</b>
+                </span>
+                <span class="c-person">
+                  <span class="c-avatar"><img class="photo" src="https://www.tcawg.com/data/images/202609/meting/Speaker/%E5%BC%B5%E6%96%87%E8%AD%AF2.jpg" alt="" /></span>
+                  <b>張文譯</b>
+                </span>
+              </div>
+            </td>
+            <td>高雄</td>
+            <td>我要報名</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="version" id="v-d">
+      <div class="version-head">
+        <strong>D｜大圖優先網格</strong>
+        <span>人像最大、文字最少。適合「先認臉再掃名」；場次細節較弱。</span>
+      </div>
+      <ul class="d-grid">
+        <li class="d-card">
+          <div class="d-photo"><img class="photo xie" src="https://www.tcawg.com/data/images/202609/meting/Speaker/%E8%AC%9D%E5%85%B6%E5%B3%BB-3.jpg" alt="" /></div>
+          <div class="d-body">
+            <div class="d-name">謝其峻</div>
+            <div class="d-title">資深領隊</div>
+            <div class="d-meta">9/9、9/16 台北</div>
+          </div>
+        </li>
+        <li class="d-card">
+          <div class="d-photo"><img class="photo" src="https://www.tcawg.com/data/images/202609/meting/Speaker/JJ.png" alt="" style="object-position:center 18%" /></div>
+          <div class="d-body">
+            <div class="d-name">曾文駿</div>
+            <div class="d-title">資深領隊</div>
+            <div class="d-meta">9/12 台北 · 9/19 台中</div>
+          </div>
+        </li>
+        <li class="d-card">
+          <div class="d-photo"><img class="photo" src="https://www.tcawg.com/data/images/202609/meting/Speaker/%E5%BC%B5%E6%9B%B8%E5%85%835.jpg" alt="" /></div>
+          <div class="d-body">
+            <div class="d-name">張書元</div>
+            <div class="d-title">旅遊達人</div>
+            <div class="d-meta">9/5 台北</div>
+          </div>
+        </li>
+        <li class="d-card">
+          <div class="d-photo"><img class="photo" src="https://www.tcawg.com/data/images/202609/meting/Speaker/%E6%9B%BE%E7%8E%9F%E5%A8%B8.jpg" alt="" /></div>
+          <div class="d-body">
+            <div class="d-name">曾玟娸</div>
+            <div class="d-title">資深領隊</div>
+            <div class="d-meta">9/24 台中</div>
+          </div>
+        </li>
+      </ul>
+    </section>
+  </div>
+</body>
+</html>

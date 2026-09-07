@@ -1,0 +1,12 @@
+---
+description: 省 Cursor 額度：Agent 任務範圍與模型使用守則
+alwaysApply: true
+---
+
+# Agent 範圍守則（Pro 額度有限）
+
+- 一次任務只改與需求直接相關的檔案；不要 `@` 整個 repo 或大量資料夾。
+- 小改（單檔、數行）優先直接編輯，不要開 Agent 跑完整 `build:all`，除非使用者要求建置。
+- 建置指令由使用者或任務結尾一次執行即可，避免每步都 build。
+- 問答、說明、方案選擇用 Ask；多檔重構才用 Agent。
+- 使用者若 Included Usage 已滿：保持最小 diff，單檔 `@`，勿平行掃描全專案。
