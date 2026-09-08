@@ -1,0 +1,2 @@
+tylesheet">
+<style>#lecture-expo *:where(h1,h2,h3,h4,h5,h6,p,ul,ol,li,a,span,strong,em,img,svg,div,section,article,header,footer,nav,button,details,summary,table,thead,tbody,tr,th,td){border:0;outline:0;text-decoration:n
