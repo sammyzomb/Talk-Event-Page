@@ -5,6 +5,7 @@ import { existsSync, readFileSync, writeFileSync, mkdirSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { LECTURE } from '../src/data/company.js'
+import { CANCELLED_LECTURE_FLOW_IDS } from '../src/data/sessions/overrides.js'
 import { classifyThemes, inferRegion, normalizeStatus } from '../src/lib/sessionUtils.js'
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..')
@@ -89,7 +90,9 @@ async function main() {
   const res = await fetch(LECTURE.listUrl)
   if (!res.ok) throw new Error(`同步失敗 HTTP ${res.status}`)
   const html = await res.text()
-  const sessions = parseSessions(html)
+  const sessions = parseSessions(html).filter(
+    (s) => !CANCELLED_LECTURE_FLOW_IDS.includes(s.lectureFlowId),
+  )
 
   if (sessions.length === 0) {
     throw new Error('解析不到任何場次，可能官網 HTML 結構已變更')

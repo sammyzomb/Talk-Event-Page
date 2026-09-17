@@ -30,7 +30,7 @@ export function LectureHub({ allSessions, pageUrl }) {
     <div id="lecture-expo" ref={rootRef} className="lex-root lex-root--hub">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema).replace(/</g, '\\u003c') }} />
       <SpeakerPhotos sessions={visible} />
-      <HubHero />
+      <HubHero allSessions={allSessions} />
       <main className="lex-main">
         {THEMES.map((theme) => (
           <ThemeSection key={theme.id} theme={theme} allSessions={allSessions} />

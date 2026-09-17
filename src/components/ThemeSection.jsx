@@ -1,6 +1,7 @@
 import { LECTURE } from '../data/company.js'
 import { getThemeImage, getThemeImagePosition } from '../data/themes.js'
 import { getVisibleSessions } from '../lib/filterSessions.js'
+import { resolveThemeForDisplay } from '../lib/resolveThemeForDisplay.js'
 import { buildRegisterUrl } from '../lib/buildRegisterUrl.js'
 import {
   formatSessionWhen,
@@ -16,6 +17,7 @@ function scheduleStatusLabel(status) {
 }
 
 export function ThemeSection({ theme, allSessions }) {
+  const displayTheme = resolveThemeForDisplay(theme, allSessions)
   const sessions = getVisibleSessions(allSessions, { themeId: theme.id })
   const schedule = sortSessionsForSchedule(sessions)
 
@@ -25,30 +27,30 @@ export function ThemeSection({ theme, allSessions }) {
       className="lex-theme-section"
       data-theme={theme.id}
       aria-labelledby={`${theme.id}-title`}
-      style={{ '--accent': theme.accent, '--accent-soft': theme.accentSoft }}
+      style={{ '--accent': displayTheme.accent, '--accent-soft': displayTheme.accentSoft }}
     >
       <div className="lex-theme-section-layout lex-wide">
         <a
           className="lex-theme-feature-image"
-          href={theme.pageUrl}
-          aria-label={`前往${theme.name}`}
+          href={displayTheme.pageUrl}
+          aria-label={`前往${displayTheme.name}`}
           data-reveal
         >
           <img
-            src={getThemeImage(theme, 'section')}
-            alt={theme.imageAlt}
+            src={getThemeImage(displayTheme, 'section')}
+            alt={displayTheme.imageAlt}
             loading="lazy"
-            style={{ objectPosition: getThemeImagePosition(theme, 'section') }}
+            style={{ objectPosition: getThemeImagePosition(displayTheme, 'section') }}
           />
           <span>
-            <small>{theme.storyEyebrow}</small>
-            <strong>進入{theme.shortName}專頁</strong>
+            <small>{displayTheme.storyEyebrow}</small>
+            <strong>進入{displayTheme.shortName}專頁</strong>
             <b aria-hidden="true">↗</b>
           </span>
         </a>
         <div className="lex-theme-section-copy" data-reveal>
-          <SectionHeading eyebrow={theme.heroLead} title={theme.name} id={`${theme.id}-title`}>
-            {theme.story}
+          <SectionHeading eyebrow={displayTheme.heroLead} title={displayTheme.name} id={`${theme.id}-title`}>
+            {displayTheme.story}
           </SectionHeading>
           {schedule.length > 0 ? (
             <div className="lex-theme-schedule" data-reveal>
@@ -120,8 +122,8 @@ export function ThemeSection({ theme, allSessions }) {
             >
               看場次一覽
             </a>
-            <a className="lex-btn lex-btn--ghost lex-theme-entry" href={theme.pageUrl}>
-              進入{theme.shortName}專頁
+            <a className="lex-btn lex-btn--ghost lex-theme-entry" href={displayTheme.pageUrl}>
+              進入{displayTheme.shortName}專頁
             </a>
           </div>
         </div>

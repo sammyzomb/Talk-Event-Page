@@ -20,10 +20,26 @@ npm run dev          # 開啟後選擇頁面：/all.html、/russia.html 等
 npm run sync:all     # 同步場次 + 建置 + 產出貼上版
 ```
 
+## 工作流程
+
+完整說明（場次同步、古文明圖文自動化、CMS 重貼範圍）見 **[docs/工作流程.md](docs/工作流程.md)**。
+
+摘要：
+
+1. `npm run build:all` → 自 lv-24 同步場次 → 建置五頁 → 產出貼上版 HTML
+2. 場次依「本月／未截止／未結束／未取消」自動顯示或隱藏
+3. **古文明**依本月剩餘場次標題自動選圖文（其他三主題仍用 `themes.js` 固定素材）
+4. 貼上版需**手動貼回 CMS**（網址 `pv-XXX` 不變）
+
+```bash
+npm run verify:ancient   # 預覽古文明子主題解析
+npm run build:all
+```
+
 ## 同步
 
 - `npm run sync:sessions`：自 lv-24 抓取場次 → `src/data/sessions/synced.js`
-- 已過期場次自動隱藏；只顯示當月場次
+- 已取消但官網未下架：`src/data/sessions/overrides.js`
 - 報名連結：`lecture-flow.html?id={lectureFlowId}`
 
 GitHub Actions 於台灣時間 **09:00–17:00 每 2 小時** 自動 sync（cron UTC 01,03,05,07,09）。有變更時下載 artifact `lecture-paste-html`，**手動貼回 CMS**。
@@ -39,6 +55,8 @@ GitHub Actions 於台灣時間 **09:00–17:00 每 2 小時** 自動 sync（cron
 
 ## 設定
 
-- 各頁 CMS URL：`src/data/themes.js` 的 `pageUrl`
+- 各頁 CMS URL：`src/data/cmsPages.js`、`src/data/themes.js`
 - 主題分類關鍵字：`src/data/sessions/themeRules.js`
+- 古文明子主題圖文：`src/data/sessions/ancientProfiles.js`
+- 手動排除場次：`src/data/sessions/overrides.js`
 - lv-24 來源 URL：`src/data/company.js` → `LECTURE.listUrl`

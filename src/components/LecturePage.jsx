@@ -1,6 +1,7 @@
 import { useRef } from 'react'
 import { getThemeQa } from '../data/faqs.js'
 import { getVisibleSessions, getNextSession } from '../lib/filterSessions.js'
+import { resolveThemeForDisplay } from '../lib/resolveThemeForDisplay.js'
 import { buildSeoSchema } from '../lib/seoSchema.js'
 import { formatMonthLabel, getActiveMonth } from '../lib/sessionUtils.js'
 import { Hero } from './Hero.jsx'
@@ -17,6 +18,7 @@ import { useScrollReveal } from './shared.jsx'
 export function LecturePage({ theme, allSessions, pageUrl }) {
   const rootRef = useRef(null)
   useScrollReveal(rootRef)
+  const displayTheme = resolveThemeForDisplay(theme, allSessions)
   const sessions = getVisibleSessions(allSessions, { themeId: theme.id })
   const nextSession = getNextSession(allSessions, theme.id)
   const themeQa = getThemeQa(theme.id)
@@ -24,7 +26,7 @@ export function LecturePage({ theme, allSessions, pageUrl }) {
   const monthLabel = formatMonthLabel(getActiveMonth())
   const schema = buildSeoSchema({
     pageType: 'theme',
-    theme,
+    theme: displayTheme,
     sessions,
     faqs,
     pageUrl,
@@ -39,10 +41,10 @@ export function LecturePage({ theme, allSessions, pageUrl }) {
     >
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema).replace(/</g, '\\u003c') }} />
       <SpeakerPhotos sessions={sessions} />
-      <Hero theme={theme} />
+      <Hero theme={displayTheme} />
       <main className="lex-main">
         <div className="lex-container">
-          <ThemeStory theme={theme} />
+          <ThemeStory theme={displayTheme} />
         </div>
         <ThemeQaSection theme={theme} faqs={themeQa} />
         <SessionTable

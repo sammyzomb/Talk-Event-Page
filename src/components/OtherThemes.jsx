@@ -2,6 +2,7 @@ import { CMS_HUB } from '../data/cmsPages.js'
 import { HUB, THEMES, getThemeImage, getThemeImagePosition } from '../data/themes.js'
 import { formatMonthLabel, getActiveMonth, sessionEndIso } from '../lib/sessionUtils.js'
 import { getNextSession } from '../lib/filterSessions.js'
+import { resolveThemeForDisplay } from '../lib/resolveThemeForDisplay.js'
 import { SectionHeading } from './shared.jsx'
 
 export function OtherThemes({ currentThemeId, sessions }) {
@@ -15,22 +16,23 @@ export function OtherThemes({ currentThemeId, sessions }) {
       </SectionHeading>
       <div className="lex-others-grid">
         {others.map((theme) => {
+          const displayTheme = resolveThemeForDisplay(theme, sessions)
           const preview = getNextSession(sessions, theme.id)
           const previewEnd = preview ? sessionEndIso(preview) : ''
           return (
             <a
               key={theme.id}
               className="lex-other-card"
-              href={theme.pageUrl}
+              href={displayTheme.pageUrl}
               data-reveal
-              style={{ '--accent': theme.accent, '--accent-soft': theme.accentSoft }}
+              style={{ '--accent': displayTheme.accent, '--accent-soft': displayTheme.accentSoft }}
             >
               <span className="lex-other-card-image">
                 <img
-                  src={getThemeImage(theme, 'showcase')}
+                  src={getThemeImage(displayTheme, 'showcase')}
                   alt=""
                   loading="lazy"
-                  style={{ objectPosition: getThemeImagePosition(theme, 'showcase') }}
+                  style={{ objectPosition: getThemeImagePosition(displayTheme, 'showcase') }}
                 />
               </span>
               <span className="lex-other-card-copy">

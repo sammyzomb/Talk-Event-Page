@@ -12,6 +12,7 @@
     "build:all": "npm run build && npm run build:paste",
     "sync:all": "npm run sync:sessions && npm run build:all",
     "verify:paste": "node scripts/verify-paste.mjs",
+    "verify:ancient": "node scripts/verify-ancient-focus.mjs",
     "cms:meta": "node scripts/generate-cms-meta.mjs",
     "export:hero": "node scripts/export-carousel-hero.mjs"
   },

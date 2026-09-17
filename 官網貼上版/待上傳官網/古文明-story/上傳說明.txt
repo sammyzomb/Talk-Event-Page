@@ -1,11 +1,9 @@
-請上傳本資料夾的 shutterstock_1338359999.jpg 至官網伺服器：
+古文明子主題圖 — 已上傳官網（202609/meting/Speaker/）
 
-  /travel/data/images/202609/lecture-ancient/shutterstock_1338359999.jpg
+  南印度.jpg  →  https://www.tcawg.com/data/images/202609/meting/Speaker/南印度.jpg
+  中亞.jpg    →  https://www.tcawg.com/data/images/202609/meting/Speaker/中亞.jpg
+  埃及.jpg    →  https://www.tcawg.com/data/images/202609/meting/Speaker/埃及.jpg
+  b2787b.jpg  →  https://www.tcawg.com/data/images/202609/meting/Speaker/b2787b.jpg（不丹）
 
-對應 URL（themes.js 已設定）：
-
-  https://www.tcawg.com/travel/data/images/202609/lecture-ancient/shutterstock_1338359999.jpg
-
-來源：NAS 米納克希神廟 / shutterstock_1338359999.jpg（已壓縮為 1920px 寬，約 392KB）
-
-上傳完成後，重貼 官網貼上版/古文明/貼上用-HTML區塊.html 至 CMS。
+程式設定於 src/data/sessions/ancientProfiles.js（ANCIENT_THEME_IMAGES）。
+依本月古文明場次標題關鍵字自動選圖，變更後執行 npm run build:all 並重貼 CMS。

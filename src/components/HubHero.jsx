@@ -1,22 +1,25 @@
 import { useRef } from 'react'
-import { HUB, THEMES } from '../data/themes.js'
+import { HUB, THEMES, getThemeImage, getThemeImagePosition } from '../data/themes.js'
+import { resolveThemeForDisplay } from '../lib/resolveThemeForDisplay.js'
 import { useHeroCarousel } from './Hero.jsx'
 import { SessionGlance } from './SessionGlance.jsx'
 
-export function HubHero() {
+export function HubHero({ allSessions }) {
   const carouselRef = useRef(null)
   useHeroCarousel(carouselRef)
+  const displayThemes = THEMES.map((theme) => resolveThemeForDisplay(theme, allSessions))
+
   return (
     <header className="lex-hero lex-hero--hub">
       <div className="lex-hero-bg lex-hero-carousel" ref={carouselRef} aria-hidden="true">
-        {THEMES.map((theme, index) => (
+        {displayThemes.map((theme, index) => (
           <img
             key={theme.id}
             data-hero-slide=""
             {...(index === 0 ? { 'data-active': '' } : {})}
-            src={theme.heroImage}
+            src={getThemeImage(theme, 'hero')}
             alt=""
-            style={{ objectPosition: theme.heroPosition }}
+            style={{ objectPosition: getThemeImagePosition(theme, 'hero') }}
           />
         ))}
       </div>
