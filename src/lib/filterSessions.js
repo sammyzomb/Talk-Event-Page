@@ -3,8 +3,8 @@ import {
   speakerProfilesForSession,
 } from '../data/speakers.js'
 import {
-  getActiveMonth,
-  isCurrentMonth,
+  getDisplayMonthKeys,
+  isInDisplayMonths,
   isSessionVisible,
   taipeiNow,
 } from './sessionUtils.js'
@@ -19,13 +19,13 @@ function withSpeaker(session) {
 
 export function getVisibleSessions(sessions, options = {}) {
   const now = options.now ?? taipeiNow()
-  const monthKey = options.monthKey ?? getActiveMonth(now)
+  const monthKeys = options.monthKeys ?? getDisplayMonthKeys(now)
   const themeId = options.themeId
   const untagged = options.untagged === true
 
   return sessions
     .filter((s) => isSessionVisible(s, now))
-    .filter((s) => isCurrentMonth(s, monthKey, now))
+    .filter((s) => isInDisplayMonths(s, monthKeys, now))
     .filter((s) => {
       if (themeId) return s.themes.includes(themeId)
       if (untagged) return s.themes.length === 0

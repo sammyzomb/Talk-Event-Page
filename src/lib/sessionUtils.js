@@ -50,6 +50,34 @@ export function formatMonthLabel(monthKey) {
   return `${y}年${Number(m)}月`
 }
 
+export function getNextMonthKey(now = taipeiNow()) {
+  const d = new Date(now)
+  d.setMonth(d.getMonth() + 1)
+  const y = d.getFullYear()
+  const m = String(d.getMonth() + 1).padStart(2, '0')
+  return `${y}-${m}`
+}
+
+/** 活動頁顯示範圍：當月 + 次月 */
+export function getDisplayMonthKeys(now = taipeiNow()) {
+  return [getActiveMonth(now), getNextMonthKey(now)]
+}
+
+export function isInDisplayMonths(session, monthKeys, now = taipeiNow()) {
+  const keys = monthKeys ?? getDisplayMonthKeys(now)
+  const normalized = session.date.replace(/\//g, '-').slice(0, 7)
+  return keys.includes(normalized)
+}
+
+/** 例：2026年9月、10月 */
+export function formatDisplayMonthLabel(monthKeys, now = taipeiNow()) {
+  const keys = monthKeys ?? getDisplayMonthKeys(now)
+  if (keys.length === 0) return ''
+  const [year] = keys[0].split('-')
+  const parts = keys.map((k) => `${Number(k.split('-')[1])}月`)
+  return `${year}年${parts.join('、')}`
+}
+
 export const REGISTRATION_CUTOFF_HOUR = 15
 
 export function parseSessionDate(dateStr) {

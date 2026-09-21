@@ -3,7 +3,7 @@ import { getThemeQa } from '../data/faqs.js'
 import { getVisibleSessions, getNextSession } from '../lib/filterSessions.js'
 import { resolveThemeForDisplay } from '../lib/resolveThemeForDisplay.js'
 import { buildSeoSchema } from '../lib/seoSchema.js'
-import { formatMonthLabel, getActiveMonth } from '../lib/sessionUtils.js'
+import { formatDisplayMonthLabel, getDisplayMonthKeys } from '../lib/sessionUtils.js'
 import { Hero } from './Hero.jsx'
 import { OtherThemes } from './OtherThemes.jsx'
 import { RegisterBlock } from './RegisterBlock.jsx'
@@ -23,7 +23,7 @@ export function LecturePage({ theme, allSessions, pageUrl }) {
   const nextSession = getNextSession(allSessions, theme.id)
   const themeQa = getThemeQa(theme.id)
   const faqs = themeQa
-  const monthLabel = formatMonthLabel(getActiveMonth())
+  const monthLabel = formatDisplayMonthLabel(getDisplayMonthKeys())
   const schema = buildSeoSchema({
     pageType: 'theme',
     theme: displayTheme,

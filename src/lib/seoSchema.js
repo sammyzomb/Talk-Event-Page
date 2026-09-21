@@ -1,7 +1,7 @@
 import { COMPANY } from '../data/company.js'
 import { HUB } from '../data/themes.js'
 import { buildRegisterUrl } from './buildRegisterUrl.js'
-import { formatMonthLabel, getActiveMonth } from './sessionUtils.js'
+import { formatDisplayMonthLabel, getDisplayMonthKeys } from './sessionUtils.js'
 
 function parseEventDateTime(dateStr, timeStr, kind) {
   const date = dateStr.replace(/\//g, '-')
@@ -11,8 +11,7 @@ function parseEventDateTime(dateStr, timeStr, kind) {
 }
 
 export function buildSeoSchema({ pageType, theme, sessions, faqs, pageUrl }) {
-  const monthKey = getActiveMonth()
-  const monthLabel = formatMonthLabel(monthKey)
+  const monthLabel = formatDisplayMonthLabel(getDisplayMonthKeys())
   const pageName =
     pageType === 'hub' ? `${monthLabel}${HUB.title}` : `${monthLabel}${theme.name}`
   const description = pageType === 'hub' ? HUB.seoDescription : theme.seoDescription

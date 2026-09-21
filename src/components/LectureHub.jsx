@@ -2,7 +2,7 @@ import { useRef } from 'react'
 import { HUB, THEMES } from '../data/themes.js'
 import { getVisibleSessions, getNextSession } from '../lib/filterSessions.js'
 import { buildSeoSchema } from '../lib/seoSchema.js'
-import { formatMonthLabel, getActiveMonth } from '../lib/sessionUtils.js'
+import { formatDisplayMonthLabel, getDisplayMonthKeys } from '../lib/sessionUtils.js'
 import { HubHero } from './HubHero.jsx'
 import { OtherSessions } from './OtherSessions.jsx'
 import { RegisterBlock } from './RegisterBlock.jsx'
@@ -17,7 +17,7 @@ export function LectureHub({ allSessions, pageUrl }) {
   useScrollReveal(rootRef)
   const visible = getVisibleSessions(allSessions)
   const nextSession = getNextSession(allSessions)
-  const monthLabel = formatMonthLabel(getActiveMonth())
+  const monthLabel = formatDisplayMonthLabel(getDisplayMonthKeys())
   const schema = buildSeoSchema({
     pageType: 'hub',
     theme: null,

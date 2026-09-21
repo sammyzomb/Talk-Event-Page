@@ -1,8 +1,9 @@
-/** 主講人對照：Google 試算表「出團動態+需求紀錄」分頁「全省講座9月」 */
+/** 主講人對照：Google 試算表「出團動態+需求紀錄」分頁「全省講座10月」 */
 export const SPEAKER_SOURCE = {
   spreadsheetId: '1JYywF1HJShc3A7UnoJSVlzz6UzFWR_1oevbleI3va4g',
-  sheetName: '全省講座9月',
-  month: '2026-09',
+  sheetName: '全省講座10月',
+  sheetGid: 380238741,
+  month: '2026-10',
 }
 
 /**
@@ -27,6 +28,18 @@ export const SPEAKERS_BY_FLOW_ID = {
   1944: '曾玟娸（VICKY）、耿曼綸',
   1950: '張書元、謝其峻',
   1940: '劉軒綸',
+  1960: '王秋萍',
+  1956: '張文譯、郭厚璋',
+  1952: '李小萍',
+  1953: '劉軒綸、鄭秀曼',
+  1961: '劉軒綸',
+  1957: '王秋萍',
+  1958: '呂適仲（Jack）',
+  1954: '張書元',
+  1955: '謝其峻、許家樸',
+  1962: '林芮杋、蔡孟谷',
+  1959: '劉軒綸',
+  1963: '陳姸方、徐維閔',
 }
 
 /** 官網後台 202609/meting/Speaker 上傳目錄 */
@@ -146,6 +159,12 @@ export const SPEAKER_PROFILES = {
     title: '資深領隊',
     image: speakerImage('耿曼綸.jpg'),
     imagePosition: 'center 25%',
+  },
+  鄭秀曼: {
+    name: '鄭秀曼',
+    title: '旅遊達人',
+    image: speakerImage('鄭秀曼.jpg'),
+    imagePosition: DEFAULT_IMAGE_POSITION,
   },
 }
 

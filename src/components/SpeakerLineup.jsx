@@ -1,5 +1,5 @@
 import { collectSpeakers, shortDate } from '../lib/speakerLineup.js'
-import { formatMonthLabel, getActiveMonth, sessionEndIso } from '../lib/sessionUtils.js'
+import { formatDisplayMonthLabel, getDisplayMonthKeys, sessionEndIso } from '../lib/sessionUtils.js'
 import { SpeakerAvatar } from './SpeakerAvatar.jsx'
 import { SectionHeading } from './shared.jsx'
 
@@ -7,7 +7,7 @@ export function SpeakerLineup({ sessions, id = 'speakers' }) {
   const speakers = collectSpeakers(sessions)
   if (speakers.length === 0) return null
 
-  const monthLabel = formatMonthLabel(getActiveMonth())
+  const monthLabel = formatDisplayMonthLabel(getDisplayMonthKeys())
 
   return (
     <section id={id} className="lex-lineup lex-wide" aria-labelledby={`${id}-title`}>
@@ -33,7 +33,7 @@ export function SpeakerLineup({ sessions, id = 'speakers' }) {
                 </ul>
               ) : null}
               {speaker.sessions.length > 1 ? (
-                <em className="lex-lineup-count">本月 {speaker.sessions.length} 場</em>
+                <em className="lex-lineup-count">近期 {speaker.sessions.length} 場</em>
               ) : null}
               <ul className="lex-lineup-sessions">
                 {speaker.sessions.map((session) => {

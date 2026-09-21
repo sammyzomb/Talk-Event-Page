@@ -55,7 +55,7 @@ export function ThemeSection({ theme, allSessions }) {
           {schedule.length > 0 ? (
             <div className="lex-theme-schedule" data-reveal>
               <p className="lex-theme-schedule-head">
-                <span>本月場次</span>
+                <span>近期場次</span>
                 <em>{schedule.length} 場</em>
               </p>
               <ul aria-label={`${theme.shortName}各區講座日期，可點選場次直接報名`}>

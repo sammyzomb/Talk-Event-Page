@@ -1,12 +1,12 @@
 import { CMS_HUB } from '../data/cmsPages.js'
 import { HUB, THEMES, getThemeImage, getThemeImagePosition } from '../data/themes.js'
-import { formatMonthLabel, getActiveMonth, sessionEndIso } from '../lib/sessionUtils.js'
+import { formatDisplayMonthLabel, getDisplayMonthKeys, sessionEndIso } from '../lib/sessionUtils.js'
 import { getNextSession } from '../lib/filterSessions.js'
 import { resolveThemeForDisplay } from '../lib/resolveThemeForDisplay.js'
 import { SectionHeading } from './shared.jsx'
 
 export function OtherThemes({ currentThemeId, sessions }) {
-  const monthLabel = formatMonthLabel(getActiveMonth())
+  const monthLabel = formatDisplayMonthLabel(getDisplayMonthKeys())
   const others = THEMES.filter((t) => t.id !== currentThemeId)
 
   return (
