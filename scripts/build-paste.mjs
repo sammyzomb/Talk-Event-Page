@@ -274,10 +274,16 @@ const fonts = `<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700;900&display=swap" rel="stylesheet">`
 
-const browser = await puppeteer.launch({
+const launchOptions = {
   headless: true,
   executablePath: systemBrowsers.find((path) => path && existsSync(path)),
-})
+}
+// GitHub Actions ubuntu-latest：AppArmor 限制 unprivileged user namespaces 時 Chrome 無法建立 sandbox
+if (process.env.CI) {
+  launchOptions.args = ['--no-sandbox', '--disable-setuid-sandbox']
+}
+
+const browser = await puppeteer.launch(launchOptions)
 
 for (const pageInfo of PAGES) {
   const distPath = join(root, 'dist', pageInfo.dist)
